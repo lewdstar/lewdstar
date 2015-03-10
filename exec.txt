@@ -1,0 +1,3 @@
+#debug ^!cum\:?([\w,\s]*)(\|([\w,\s]*)\|?(\-?[0-9]+)?)? ./scripts/gelbooru
+#shota ^!cum\:?([\w,\s]*)(\|([\w,\s]*)\|?(\-?[0-9]+)?)? ./scripts/gelbooru
+PRIVATE ^!cum\:?([\w,\s]*)(\|([\w,\s]*)\|?(\-?[0-9]+)?)? ./scripts/gelbooru
