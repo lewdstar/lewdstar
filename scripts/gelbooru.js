@@ -1,4 +1,4 @@
-// ^!cum\:?([\w,\s]*)(\|([\w,\s]*)\|?(\-?[0-9]+)?)?
+// ^!cum\:?([\w,\s()]*)(\|([\w,\s()]*)\|?(\-?[0-9]+)?)?
 
 var http = require('http');
 var DOMParser = require('xmldom').DOMParser;
@@ -65,7 +65,7 @@ if( input.regex[1] === " help" ) {
 	}
 
 	var getPic = function() {
-		if ( offset > count  || offset > 15)  { out("No pic matches your criteria. (15 rounds of search)"); return; }
+		if ( offset > count  || offset > 20)  { out("No pic matches your criteria. (20 rounds of search)"); return; }
 
 		var response = "";
 		
