@@ -4,10 +4,12 @@ var http = require('http');
 var DOMParser = require('xmldom').DOMParser;
 
 module.exports = function(input, out) {
-//Help
-if( input.regex[1] === " help" ) { 
-	out("Syntax: !cum: tags, to, search | tag, to, filter | scores over");
-	out("Example: !cum: vocaloid, kagamine len | 1girl, socks | 20");
+
+//Schbot Help
+if( input.regex[0].indexOf(' help') !== -1  ) {  
+	out("--Gelbooru: !cum: tags, to, search | tag, to, filter | scores over", true);
+	out("     Example: !cum: vocaloid, kagamine len | 1girl, socks | 20", true);
+	out("--Shotachan Gallery: !gal", true);
 	return;
 }
 
@@ -61,6 +63,9 @@ if( input.regex[1] === " help" ) {
 					out("No pr0n fur ye dik!");
 				}
 			});
+		}).on('error', function(e){
+			console.log(e); 
+			out('Something wrong happened: '+e.message);
 		});
 	}
 
@@ -90,6 +95,9 @@ if( input.regex[1] === " help" ) {
 						out(post.getAttribute("file_url") +" (Source: "+ post.getAttribute("source")+") "+count+" results." );
 					}
 				});
+		}).on('error', function(e) {
+			console.log(e);
+			out('You almost got your eye-candy but something happened: '+e.message);
 		});
 
 		offset++;
