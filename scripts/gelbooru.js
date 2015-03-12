@@ -1,4 +1,4 @@
-// ^!cum\:?([\w,\s()]*)(\|([\w,\s()]*)\|?(\-?[0-9]+)?)?
+// ^!cum\:?([\w,\s()-+]*)(\|([\w,\s()]*)\|?(\-?[0-9]+)?)?
 
 var http = require('http');
 var DOMParser = require('xmldom').DOMParser;
@@ -114,7 +114,7 @@ Array.prototype.inArray = function(q) {
 }
 
 var validizeTags = function(tags) {
-	var spaced = tags.map( function(str) { return str.trim().replace(/\s/ig,'_') });
+	var spaced = tags.map( function(str) { return str.trim().replace(/\s/ig,'_') }).map( function(str) { return str.replace(/\+/ig,'%2b') });
 	return spaced.join('+');
 }
 
