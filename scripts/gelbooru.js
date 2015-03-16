@@ -8,7 +8,7 @@ module.exports = function(input, out) {
 //Schbot Help
 if( input.regex[0].indexOf(' help') !== -1  ) {  
 	out("--Gelbooru: !cum: tags, to, search | tag, to, filter | scores over", true);
-	out("     Example: !cum: vocaloid, kagamine len | 1girl, socks | 20", true);
+	out("      Example: !cum: vocaloid, kagamine len | 1girl, socks | 20", true);
 	out("--Shotachan Gallery: !gal", true);
 	return;
 }
