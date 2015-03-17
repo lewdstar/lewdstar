@@ -7,6 +7,6 @@ PRIVATE ^!gal ./scripts/stcpwg
 #shota ^!define[\:\s]?(.*) ./scripts/urban
 #debug ^!define[\:\s]?(.*) ./scripts/urban
 PRIVATE ^!define[\:\s]?(.*) ./scripts/urban
-#shota ^!define[\:\s]?(.*) ./scripts/wiki
-#debug ^!define[\:\s]?(.*) ./scripts/wiki
-PRIVATE ^!define[\:\s]?(.*) ./scripts/wiki
+#shota ^!wiki\s+(.*) ./scripts/wiki
+#debug ^!wiki\s+(.*) ./scripts/wiki
+PRIVATE ^!wiki\s+(.*) ./scripts/wiki
