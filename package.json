@@ -15,5 +15,13 @@
     "irc"
   ],
   "author": "potasmic",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/potasmic/schbot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/potasmic/schbot/issues"
+  },
+  "homepage": "https://github.com/potasmic/schbot"
 }

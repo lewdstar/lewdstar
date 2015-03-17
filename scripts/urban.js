@@ -25,8 +25,8 @@ module.exports = function(input, out) {
 				if( result.result_type === "no_results") {
 					out("No definition found.");
 				} else {
-					var more = result.list[0].definition.length > 280 ? "... " : "";
-					out(result.list[0].definition.substr(0,280) + more + "(" + result.list[0].permalink + ")");
+					var more = result.list[0].definition.length > 280 ? "..." : "";
+					out(result.list[0].definition.substr(0,280) + more + " (" + result.list[0].permalink + ")");
 				}
 
 			});
