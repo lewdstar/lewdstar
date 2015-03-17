@@ -4,3 +4,6 @@ PRIVATE ^!cum\:?([\w,\s()-+]*)(\|([\w,\s()]*)\|?(\-?[0-9]+)?)? ./scripts/gelboor
 #shota ^!gal ./scripts/stcpwg
 #debug ^!gal ./scripts/stcpwg
 PRIVATE ^!gal ./scripts/stcpwg
+#shota ^!define[\:\s]?(.*) ./scripts/urban
+#debug ^!define[\:\s]?(.*) ./scripts/urban
+PRIVATE ^!define[\:\s]?(.*) ./scripts/urban
