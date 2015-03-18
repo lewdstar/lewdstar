@@ -10,3 +10,6 @@ PRIVATE ^!define[\:\s]?(.*) ./scripts/urban
 #shota ^!wiki\s+(.*) ./scripts/wiki
 #debug ^!wiki\s+(.*) ./scripts/wiki
 PRIVATE ^!wiki\s+(.*) ./scripts/wiki
+#shota ^!sick ./scripts/sickipedia
+#debug ^!sick ./scripts/sickipedia
+PRIVATE ^!sick ./scripts/sickipedia
