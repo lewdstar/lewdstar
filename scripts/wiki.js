@@ -19,7 +19,7 @@ module.exports = function( input, out ) {
 				var obj = JSON.parse(rep);
 
 				if ( obj[1].length > 0 ) {
-					if ( /may refer to:\s*$/ig.test(obj[2][0]) ) {
+					if ( /refers? to:\s*$/ig.test(obj[2][0]) ) {
 						//Getting possible matches
 						var reg = new RegExp( query+ "\\s?\\(.*\\)","ig");
 
