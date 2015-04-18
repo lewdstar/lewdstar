@@ -1,6 +1,6 @@
 // !([a-zA-Z]*)
 
-module.exports = function(input, out) {
+module.exports = function(input, out, extra) {
 	var what = input.regex[1].toLowerCase();
 
 	if (what == "source") {
