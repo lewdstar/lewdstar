@@ -33,8 +33,6 @@ var nick = process.argv.indexOf('-n') > 0 ? process.argv[process.argv.indexOf('-
 var info = process.argv.indexOf('-i') > 0 ? true : false ;
 var serv = process.argv.indexOf('-s') > 0 ? process.argv[process.argv.indexOf('-s')+1] : "irc.rizon.net";
 
-if ( process.argv.indexOf('-quiet') !== -1 ) console.log = function() {};
-
 if ( process.argv.indexOf('-h') !== -1 ) {
 	var txt = '\n';
 	txt += color('      PotIRCl Bot.      ','black+green_bg');
@@ -53,7 +51,7 @@ if ( process.argv.indexOf('-h') !== -1 ) {
 var config = fs.readFileSync(exec);
 var channels = [], regexs =[], procs = [];
 
-config.toString().trim().split(os.EOL).forEach( function(line) { 
+config.toString().split(os.EOL).forEach( function(line) { 
 		channels.push( line.split(' ')[0] );
 		  regexs.push( line.split(' ')[1] );
 		   procs.push( line.split(' ')[2] );
@@ -65,34 +63,42 @@ client.addListener('error', function(error) {
 	if(error.args[2] !== "PRIVATE" && error.rawCommand === 403) console.log(error);
 });
 
-regexs.forEach( function(item, i) {
+for ( i=0; i< regexs.length; i++) {
 		
+		var index  = i;
 		var regexp = new RegExp(regexs[i]);
 		//Node on *nix has some problems with EOL splitting.
-	    if(procs[i] === undefined || channels[i] === undefined ) return;	
-		var proc   = require(procs[i]);
+	    if(procs[index] === undefined || channels[index] === undefined ) return;	
+		var proc   = require(procs[index]);
 
-		console.log("Binding: "+color(channels[i],"yellow")+" with "+color(regexs[i],"cyan")+" through "+color(procs[i], "magenta"));
-		
-		//This is stupid because PRIVATE and non-private are almost the same
-		if ( channels[i] !== "PRIVATE" ) { 
+console.log("Binding: "+color(channels[index],"yellow")+" with "+color(regexs[i],"cyan")+" through "+color(procs[index], "magenta"));
+//This is stupid because PRIVATE and non-private are almost the same
 
-			client.addListener("message"+channels[i], function(from, msg) {
+		if ( channels[index] !== "PRIVATE" ) { 
+
+			client.addListener("message"+channels[index], function(from, msg) {
 				var message = {};
-			    message.regex = regexp.exec(msg);
-			    message.from  = from;
-
+				    message.regex = regexp.exec(msg);
+				    message.from  = from;
+				
 				if ( regexp.test(msg) ) {
 					
 					//Callback
-					proc(message, function(txt, pm) {
-						if(!pm) {
-							client.say(channels[i], txt);
-						} else {
-							client.say(from, txt);
-						}
-					});
+					
+						proc(message, function(txt, pm) {
+							if(!pm) {
+								client.say(channels[index], txt);
+							} else {
+								client.say(from, txt);
+							}
+						},
+						{
+							from: channels[index],
+							client: client
+						});
+					
 				}
+
 			});
 
 		} else {
@@ -106,9 +112,14 @@ regexs.forEach( function(item, i) {
 					//Callback
 					proc(message, function(txt) {
 							client.say(from, txt);
+						}, 
+						{
+							from: from,
+							client: client
 						});
+					
 				}
 			});
 		}
-});
+}
 
