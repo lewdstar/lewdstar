@@ -63,7 +63,7 @@ client.addListener('error', function(error) {
 	if(error.args[2] !== "PRIVATE" && error.rawCommand === 403) console.log(error);
 });
 
-for ( i=0; i< regexs.length; i++) {
+regexs.forEach( function(item, i) {
 		
 		var index  = i;
 		var regexp = new RegExp(regexs[i]);
@@ -121,5 +121,5 @@ console.log("Binding: "+color(channels[index],"yellow")+" with "+color(regexs[i]
 				}
 			});
 		}
-}
+});
 
