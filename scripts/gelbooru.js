@@ -103,8 +103,12 @@ if( input.regex[0].indexOf(' help') !== -1  ) {
 		offset++;
 		console.log("Searched ",offset,"of ",count);
 	}
-
-	main();
+	
+	try {
+		main();
+	} catch (e) {
+		out("Something wrong happened: "+e);
+	}
 }
 
 
