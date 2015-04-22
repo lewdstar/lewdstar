@@ -60,7 +60,8 @@ if( input.regex[0].indexOf(' help') !== -1  ) {
 					count = doc.getElementsByTagName("posts")[0].getAttribute("count");
 				} catch(e) {
 					out("Something went wrong: " + e);
-					if ( var reason = doc.getElementsByTagName("response")[0].getAttribute("reason") !== undefined ) out("Gelbooru says: "+reason);
+					var reason = doc.getElementsByTagName("response")[0].getAttribute("reason") 
+					if ( reason !== undefined ) out("Gelbooru says: "+reason);
 					return;
 				}
 
