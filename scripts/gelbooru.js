@@ -56,7 +56,12 @@ if( input.regex[0].indexOf(' help') !== -1  ) {
 				var parser = new DOMParser();
 				var doc    = parser.parseFromString(response,"application/xml");
 
+				try {
 					count = doc.getElementsByTagName("posts")[0].getAttribute("count");
+				} catch(e) {
+					out("Something went wrong: " + e); return;
+				}
+
 				if( count > 0 ) {
 					getPic(count);
 				} else {
@@ -103,12 +108,8 @@ if( input.regex[0].indexOf(' help') !== -1  ) {
 		offset++;
 		console.log("Searched ",offset,"of ",count);
 	}
-	
-	try {
-		main();
-	} catch (e) {
-		out("Something wrong happened: "+e);
-	}
+
+	main();
 }
 
 
