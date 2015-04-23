@@ -1,7 +1,8 @@
-// !([a-zA-Z]*)
+// !([a-zA-Z]*)\s(.*)
 
 module.exports = function(input, out, extra) {
 	var what = input.regex[1].toLowerCase();
+	var spec = input.regex[2].toLowerCase();
 
 	if (what == "source") {
 		out("Source available on GitHub: " + "http://github.com/potasmic/schbot");
@@ -16,6 +17,21 @@ module.exports = function(input, out, extra) {
 			out("source: Returns link to GitHub Repository of this bot.", true);
 			out("help: Shows this help message.", true);
 			out("sick: Returns a one of the top daily jokes from Sickipedia. ", true);
+			out("leave: Leaves the channel.", true);
+			out("join [channel]: Joins the channel. Note that the bot won't execute commands to channel unlisted.")
+		}
+	}
+	else if ( what == "leave" && extra.from.substr(0,1) == "#") {
+		if ( spec == "schbot" ) {
+			extra.client.part(extra.from);
+		}
+	}
+	else if ( what == "join" ) {
+		if ( spec.substr(0,1) == "#" ) {
+			extra.client.join(spec);
+			extra.client.say(spec, "Bot won't execute commands from channels unlisted in configuration.");
+		} else {
+			out("Invalid syntax. Correct Syntax: !join [channel]", true);
 		}
 	}
 }
