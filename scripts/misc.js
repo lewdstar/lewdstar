@@ -21,7 +21,7 @@ module.exports = function(input, out, extra) {
 		}
 	}
 	else if ( what == "stfu" && extra.from.substr(0,1) == "#") {
-		out("Bot mute state: "+extra.bot.getState());
+		out("Bot mute state: "+ !extra.bot.getState());
 		extra.bot.mute();
 	}
 	else if ( what == "unmute" ) {
