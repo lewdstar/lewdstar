@@ -50,6 +50,7 @@ if ( process.argv.indexOf('-h') !== -1 ) {
 
 var config = fs.readFileSync(exec);
 var channels = [], regexs =[], procs = [];
+var mute_state = false;
 
 config.toString().split(os.EOL).forEach( function(line) { 
 		channels.push( line.split(' ')[0] );
@@ -62,6 +63,15 @@ global.client = new irc.Client(serv, nick, {port: port, channels: channels, cert
 client.addListener('error', function(error) {
 	if(error.args[2] !== "PRIVATE" && error.rawCommand === 403) console.log(error);
 });
+
+//Utils
+function mute() {
+	mute_state = true;
+}
+function unmute() {
+	mute_state = false;
+}
+
 
 regexs.forEach( function(item, i) {
 		
@@ -81,7 +91,7 @@ console.log("Binding: "+color(channels[index],"yellow")+" with "+color(regexs[i]
 				    message.regex = regexp.exec(msg);
 				    message.from  = from;
 				
-				if ( regexp.test(msg) ) {
+				if ( regexp.test(msg) && mute_state !== true) {
 					
 					//Callback
 					
@@ -94,7 +104,11 @@ console.log("Binding: "+color(channels[index],"yellow")+" with "+color(regexs[i]
 						},
 						{
 							from: channels[index],
-							client: client
+							client: client,
+							bot: {
+								mute: mute,
+								unmute: unmute
+							}
 						});
 					
 				}
@@ -115,11 +129,16 @@ console.log("Binding: "+color(channels[index],"yellow")+" with "+color(regexs[i]
 						}, 
 						{
 							from: from,
-							client: client
+							client: client,
+							bot: {
+								mute: mute,
+								unmute: unmute
+							}
 						});
 					
 				}
 			});
 		}
 });
+
 

@@ -10,7 +10,7 @@ module.exports = function(input, out, extra) {
 	else if ( what == "help" ) {
 		out("Available commands: define, wiki, source, help, sick, gal, cum. PM !help for more.");
 		if ( extra.from.substr(0,1) != "#" ) {
-			out("cum [keywords] [, keyword2] | [filter] [, filter 2] | [rating above]: Returns a random image from Gelbooru relating to Shota", true);
+			out("cum [keywords] [, keyword2] | [filter] [, filter 2] | [rating above]: Returns a random image from Gelbooru.", true);
 			out("gal: returns a random image from the Shotachan Gallery", true);
 			out("define [text] : Fetch definition of a word from UrbanDictionary. ", true);
 			out("wiki [text] : Fetch summary of Wikipedia article if found. " , true);
@@ -21,17 +21,10 @@ module.exports = function(input, out, extra) {
 			out("join [channel]: Joins the channel. Note that the bot won't execute commands to channel unlisted.")
 		}
 	}
-	else if ( what == "leave" && extra.from.substr(0,1) == "#") {
-		if ( spec == "schbot" ) {
-			extra.client.part(extra.from);
-		}
+	else if ( what == "mute" && extra.from.substr(0,1) == "#") {
+		extra.bot.mute();
 	}
-	else if ( what == "join" ) {
-		if ( spec.substr(0,1) == "#" ) {
-			extra.client.join(spec);
-			extra.client.say(spec, "Bot won't execute commands from channels unlisted in configuration.");
-		} else {
-			out("Invalid syntax. Correct Syntax: !join [channel]", true);
-		}
+	else if ( what == "unmute" ) {
+		extra.bot.unmute();
 	}
 }
