@@ -13,6 +13,6 @@ PRIVATE ^!wiki\s+(.*) ./scripts/wiki
 #shota ^!sick ./scripts/sickipedia
 #debug ^!sick ./scripts/sickipedia
 PRIVATE ^!sick ./scripts/sickipedia
-#shota ^!([a-zA-Z]*)\s(.*) ./scripts/misc
-#debug ^!([a-zA-Z]*)\s(.*) ./scripts/misc
-PRIVATE ^!([a-zA-Z]*)\s(.*) ./scripts/misc
+#shota ^!([a-zA-Z]*)\s?(.*)? ./scripts/misc
+#debug ^!([a-zA-Z]*)\s?(.*)? ./scripts/misc
+PRIVATE ^!([a-zA-Z]*)\s?(.*)? ./scripts/misc

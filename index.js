@@ -71,6 +71,9 @@ function mute() {
 function unmute() {
 	mute_state = false;
 }
+function getState() {
+	return mute_state;
+}
 
 
 regexs.forEach( function(item, i) {
@@ -91,15 +94,16 @@ console.log("Binding: "+color(channels[index],"yellow")+" with "+color(regexs[i]
 				    message.regex = regexp.exec(msg);
 				    message.from  = from;
 				
-				if ( regexp.test(msg) && mute_state !== true) {
-					
+				if ( regexp.test(msg) ) {
 					//Callback
 					
 						proc(message, function(txt, pm) {
-							if(!pm) {
-								client.say(channels[index], txt);
-							} else {
-								client.say(from, txt);
+							if( mute_state !== true ) {
+								if(!pm) {
+									client.say(channels[index], txt);
+								} else {
+									client.say(from, txt);
+								}
 							}
 						},
 						{
@@ -107,7 +111,8 @@ console.log("Binding: "+color(channels[index],"yellow")+" with "+color(regexs[i]
 							client: client,
 							bot: {
 								mute: mute,
-								unmute: unmute
+								unmute: unmute,
+								getState: getState
 							}
 						});
 					
@@ -132,7 +137,8 @@ console.log("Binding: "+color(channels[index],"yellow")+" with "+color(regexs[i]
 							client: client,
 							bot: {
 								mute: mute,
-								unmute: unmute
+								unmute: unmute,
+								getState: getState
 							}
 						});
 					
