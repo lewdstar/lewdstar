@@ -7,8 +7,6 @@
 **/
 
 var http = require('https');
-var DOMParser = require('xmldom').DOMParser;
-
 
 module.exports = function( inp, out, extra) {
 	
