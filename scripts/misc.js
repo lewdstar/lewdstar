@@ -2,7 +2,7 @@
 
 module.exports = function(input, out, extra) {
 	var what = input.regex[1].toLowerCase();
-	var spec = input.regex[2]? input.regex[2] : undefined;
+	var spec = input.regex[2]? input.regex[2] : "";
 
 	if (what == "source") {
 		out("Source available on GitHub: " + "http://github.com/potasmic/schbot");
@@ -31,11 +31,21 @@ module.exports = function(input, out, extra) {
 		out("Bot mute state: "+extra.bot.getState());
 	}
 	else if ( what == "roll" ) {
-		spec = (spec == undefined)? 100 : spec;
+		spec = (spec == "")? 100 : spec;
 		out( Math.round( 1 + (Math.random() * (parseInt(spec)-1) )  ));
 	}
 	else if ( what == "choose") {
-		var stuffs = spec.trim().split(",");
-		out( stuffs [ Math.round( Math.random() * stuffs.length ) ].trim() );
+		if ( spec == "" ) {
+			out("Nothing to choose from. Can I choose you?");
+			return;
+		}
+
+		try {
+			var stuffs = spec.trim().split(",");
+			out( stuffs [ Math.round( Math.random() * stuffs.length ) ].trim() );
+		} catch(e) {
+			out("Something wrong: " + e.message);
+			out("String I received: "+spec);
+		}
 	}
 }
