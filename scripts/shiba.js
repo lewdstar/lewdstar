@@ -30,7 +30,7 @@ module.exports = function( inp, out, extra) {
 					}
 				});
 				//console.log( links[ Math.round( Math.random() * links.length) ] );
-
+				console.log(Math.round( Math.random() * links.length));
 				getPicFromTweet( links[ Math.round( Math.random() * links.length) ] );
 
 			});

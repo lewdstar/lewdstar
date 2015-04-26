@@ -18,6 +18,7 @@ module.exports = function(input, out, extra) {
 			out("help: Shows this help message.", true);
 			out("sick: Returns a one of the top daily jokes from Sickipedia. ", true);
 			out("stfu/unmute: Mute or unmute bot.", true);
+			out("roll [max]: Roll a random number from 1 to [max]", true);
 		}
 	}
 	else if ( what == "stfu" && extra.from.substr(0,1) == "#") {
@@ -27,5 +28,8 @@ module.exports = function(input, out, extra) {
 	else if ( what == "unmute" ) {
 		extra.bot.unmute();
 		out("Bot mute state: "+extra.bot.getState());
+	}
+	else if ( what == "roll" ) {
+		out( Math.round( 1 + (Math.random() * (parseInt(spec)-1) )  ));
 	}
 }
