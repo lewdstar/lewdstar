@@ -8,7 +8,7 @@ module.exports = function(input, out, extra) {
 		out("Source available on GitHub: " + "http://github.com/potasmic/schbot");
 	}
 	else if ( what == "help" ) {
-		out("Available commands: define, wiki, source, help, sick, gal, cum. PM !help for more.");
+		out("Available commands: define, wiki, source, help, sick, gal, cum, stfu, unmute, roll, choose. PM !help for more.");
 		if ( extra.from.substr(0,1) != "#" ) {
 			out("cum [keywords] [, keyword2] | [filter] [, filter 2] | [rating above]: Returns a random image from Gelbooru.", true);
 			out("gal: returns a random image from the Shotachan Gallery", true);
@@ -19,6 +19,7 @@ module.exports = function(input, out, extra) {
 			out("sick: Returns a one of the top daily jokes from Sickipedia. ", true);
 			out("stfu/unmute: Mute or unmute bot.", true);
 			out("roll [max]: Roll a random number from 1 to [max]", true);
+			out("choose [item1, item2, item3]: choose a random item.", true);
 		}
 	}
 	else if ( what == "stfu" && extra.from.substr(0,1) == "#") {
@@ -31,5 +32,9 @@ module.exports = function(input, out, extra) {
 	}
 	else if ( what == "roll" ) {
 		out( Math.round( 1 + (Math.random() * (parseInt(spec)-1) )  ));
+	}
+	else if ( what == "choose") {
+		var stuffs = spec.trim().split(",");
+		out( stuffs [ Math.round( Math.random() * stuffs.length ) ]);
 	}
 }
