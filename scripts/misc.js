@@ -35,6 +35,6 @@ module.exports = function(input, out, extra) {
 	}
 	else if ( what == "choose") {
 		var stuffs = spec.trim().split(",");
-		out( stuffs [ Math.round( Math.random() * stuffs.length ) ]);
+		out( stuffs [ Math.round( Math.random() * stuffs.length ) ].trim() );
 	}
 }
