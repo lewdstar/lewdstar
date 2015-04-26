@@ -31,7 +31,7 @@ module.exports = function(input, out, extra) {
 		out("Bot mute state: "+extra.bot.getState());
 	}
 	else if ( what == "roll" ) {
-		spec = (!spec)? 100 : spec;
+		spec = (spec == undefined)? 100 : spec;
 		out( Math.round( 1 + (Math.random() * (parseInt(spec)-1) )  ));
 	}
 	else if ( what == "choose") {
