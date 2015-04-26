@@ -16,3 +16,6 @@ PRIVATE ^!sick ./scripts/sickipedia
 #shota ^!([a-zA-Z]*)\s?(.*)? ./scripts/misc
 #debug ^!([a-zA-Z]*)\s?(.*)? ./scripts/misc
 PRIVATE ^!([a-zA-Z]*)\s?(.*)? ./scripts/misc
+#shota ^!shiba\s* ./scripts/shiba
+#debug ^!shiba\s* ./scripts/shiba
+PRIVATE ^!shiba\s* ./scripts/shiba
