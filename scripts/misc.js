@@ -2,7 +2,7 @@
 
 module.exports = function(input, out, extra) {
 	var what = input.regex[1].toLowerCase();
-	var spec = input.regex[2]? input.regex[2].toLowerCase() : undefined;
+	var spec = input.regex[2]? input.regex[2] : undefined;
 
 	if (what == "source") {
 		out("Source available on GitHub: " + "http://github.com/potasmic/schbot");
