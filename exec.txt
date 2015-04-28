@@ -5,3 +5,4 @@
 #shota,#debug,PRIVATE ^!sick ./scripts/sickipedia
 #shota,#debug,PRIVATE ^!([a-zA-Z]*)\s?(.*)? ./scripts/misc
 #shota,#debug,PRIVATE ^!shiba\s* ./scripts/shiba
+#debug,PRIVATE ^(.*) ./scripts/actionback
