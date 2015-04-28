@@ -75,39 +75,30 @@ function getState() {
 	return mute_state;
 }
 
+function listen(channel, regex, module) {
+	var proc   = require( module );
 
-regexs.forEach( function(item, i) {
-		
-		var index  = i;
-		var regexp = new RegExp(regexs[i]);
-		//Node on *nix has some problems with EOL splitting.
-	    if(procs[index] === undefined || channels[index] === undefined ) return;	
-		var proc   = require(procs[index]);
+	if ( channel !== "PRIVATE" ) { 
 
-console.log("Binding: "+color(channels[index],"yellow")+" with "+color(regexs[i],"cyan")+" through "+color(procs[index], "magenta"));
-//This is stupid because PRIVATE and non-private are almost the same
-
-		if ( channels[index] !== "PRIVATE" ) { 
-
-			client.addListener("message"+channels[index], function(from, msg) {
+			client.addListener("message"+channel, function(from, msg) {
 				var message = {};
-				    message.regex = regexp.exec(msg);
+				    message.regex = regex.exec(msg);
 				    message.from  = from;
 				
-				if ( regexp.test(msg) ) {
+				if ( regex.test(msg) ) {
 					//Callback
 					
 						proc(message, function(txt, pm) {
 							if( mute_state !== true ) {
 								if(!pm) {
-									client.say(channels[index], txt);
+									client.say(channel, txt);
 								} else {
 									client.say(from, txt);
 								}
 							}
 						},
 						{
-							from: channels[index],
+							from: channel,
 							client: client,
 							bot: {
 								mute: mute,
@@ -124,10 +115,10 @@ console.log("Binding: "+color(channels[index],"yellow")+" with "+color(regexs[i]
 
 			client.addListener("pm", function(from, msg) {
 				var message = {};
-				    message.regex = regexp.exec(msg);
+				    message.regex = regex.exec(msg);
 					message.from  = from;
 
-				if ( regexp.test(msg) ) {
+				if ( regex.test(msg) ) {
 					//Callback
 					proc(message, function(txt) {
 							client.say(from, txt);
@@ -145,6 +136,21 @@ console.log("Binding: "+color(channels[index],"yellow")+" with "+color(regexs[i]
 				}
 			});
 		}
+}
+
+
+regexs.forEach( function(item, i) {
+		
+		//Node on *nix has some problems with EOL splitting.
+	    if(procs[i] === undefined ) return;	
+		
+
+		console.log("Binding: "+color(channels[i].split(","),"yellow")+" with "+color(regexs[i],"cyan")+" through "+color(procs[i], "magenta"));
+
+		channels[i].split(",").forEach( function(channel, j) {
+			listen( channel.trim(), new RegExp(regexs[i]), procs[i]);
+		});
+		
 });
 
 
