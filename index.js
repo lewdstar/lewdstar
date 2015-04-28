@@ -49,13 +49,20 @@ if ( process.argv.indexOf('-h') !== -1 ) {
 }
 
 var config = fs.readFileSync(exec);
-var channels = [], regexs =[], procs = [];
+var channels = [], regexs =[], procs = [], raw = [];
 var mute_state = false;
 
 config.toString().split(os.EOL).forEach( function(line) { 
 		channels.push( line.split(' ')[0] );
 		  regexs.push( line.split(' ')[1] );
 		   procs.push( line.split(' ')[2] );
+
+	if ( line.split(' ')[3] !== undefined ) {
+		raw.push( true );
+	} else {
+		raw.push( false );
+	}
+
 });
 
 global.client = new irc.Client(serv, nick, {port: port, channels: channels, certExpired: true, realName: "PotIRCl Instance"});
@@ -138,6 +145,25 @@ function listen(channel, regex, module) {
 		}
 }
 
+function everything( channel, eve, module ) {
+	var proc = require( module );
+
+	client.addListener(eve, function() {
+		var args = arguments;
+		proc( args, function( txt ) {
+			client.say( channel, txt);
+		},
+		{
+			client: client,
+			bot: {
+				mute: mute,
+				unmute: unmute,
+				getState: getState
+			}
+		});
+	});
+}
+
 
 regexs.forEach( function(item, i) {
 		
@@ -148,7 +174,11 @@ regexs.forEach( function(item, i) {
 		console.log("Binding: "+color(channels[i].split(","),"yellow")+" with "+color(regexs[i],"cyan")+" through "+color(procs[i], "magenta"));
 
 		channels[i].split(",").forEach( function(channel, j) {
-			listen( channel.trim(), new RegExp(regexs[i]), procs[i]);
+			if( raw[i] !== true ) {
+				listen( channel.trim(), new RegExp(regexs[i]), procs[i]);
+			} else {
+				everything( channel.trim(), regexs[i], procs[i] );
+			}
 		});
 		
 });
