@@ -154,6 +154,7 @@ function everything( channel, eve, module ) {
 			client.say( channel, txt);
 		},
 		{
+			channel: channel,
 			client: client,
 			bot: {
 				mute: mute,
