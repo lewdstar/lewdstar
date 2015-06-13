@@ -1,5 +1,5 @@
 // ^!wiki\s+(.*)
-var http = require('http');
+var http = require('https');
 
 module.exports = function( input, out ) {
 
@@ -11,12 +11,16 @@ module.exports = function( input, out ) {
 
 	var opensearch = function( query ) {
 		var rep = ""; 
-		http.get("http://en.wikipedia.org/w/api.php?action=opensearch&search="+validize(query), function(res) {
+		http.get("https://en.wikipedia.org/w/api.php?action=opensearch&search="+validize(query), function(res) {
 			res.on('data', function(dat) {
-				rep += dat;
+				rep += dat; console.log("Chunk: "+dat);
 			});
 			res.on('end', function() {
-				var obj = JSON.parse(rep);
+				try {
+					var obj = JSON.parse(rep);
+				} catch(e) {
+					out("Failed: " + e); return;
+				}
 
 				if ( obj[1].length > 0 ) {
 					if ( /refers? to:\s*$/ig.test(obj[2][0]) ) {
@@ -30,6 +34,7 @@ module.exports = function( input, out ) {
 						if (disamb.length < 3) disamb.push(obj[1][1], obj[1][2]);
 
 						out("Inquires more specifically, please. Perhaps you want: " + disamb.join(" or ") + "?");
+
 					} else if (obj[2][0] !== "" && !(/^This.{0,10}a redirect/ig.test(obj[2][0])) ) {
 						out(obj[2][0] + " (" + obj[3][0] +")");
 					} else {
@@ -39,7 +44,9 @@ module.exports = function( input, out ) {
 					out("No one knows about "+query+", apparently.");
 				}
 			})
-		})
+		}).on('error', function(e) {
+			out("HTTP Error: "+e);
+		});
 	}
 
 	var deepsearch = function(url) {
@@ -52,6 +59,8 @@ module.exports = function( input, out ) {
 				var link = /\#redirect\s*\[\[(.*)\]\]/ig.exec(response);
 				opensearch(link[1]);
 			})
+		}).on('error', function(e) {
+			out("HTTP Error: "+e);
 		});
 	}
 
