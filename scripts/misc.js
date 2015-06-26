@@ -5,7 +5,7 @@ module.exports = function(input, out, extra) {
 	var spec = input.regex[2]? input.regex[2] : "";
 
 	if (what == "source") {
-		out("Source available on GitHub: " + "http://github.com/potasmic/schbot");
+		out("Source available on GitHub: " + "http://github.com/ptsk/schbot");
 	}
 	else if ( what == "help" ) {
 		out("Available commands: define, wiki, source, help, sick, gal, cum, stfu, unmute, roll, choose. PM !help for more.");
