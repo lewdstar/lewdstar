@@ -10,14 +10,14 @@ module.exports = function( input, out ) {
 	}
 
 	var opensearch = function( query ) {
-		var rep = ""; 
+		var rep = "";
 		http.get("https://en.wikipedia.org/w/api.php?action=opensearch&search="+validize(query), function(res) {
 			res.on('data', function(dat) {
 				rep += dat; console.log("Chunk: "+dat);
 			});
 			res.on('end', function() {
 				try {
-					var obj = JSON.parse(rep);
+					var obj = JSON.parse(rep); 
 				} catch(e) {
 					out("Failed: " + e); return;
 				}
