@@ -17,7 +17,7 @@ module.exports = function( input, out ) {
 			});
 			res.on('end', function() {
 				try {
-					var obj = JSON.parse(rep); 
+					var obj = JSON.parse(rep);
 				} catch(e) {
 					out("Failed: " + e); return;
 				}
