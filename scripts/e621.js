@@ -7,8 +7,8 @@ module.exports = function(input, out) {
 
 //Schbot Help
 if( input.regex[0].indexOf(' help') !== -1  ) {  
-	out("--e621: !cum: tags, to, search | tag, to, filter | scores over", true);
-	out("      Example: !cum: vocaloid, kagamine len | 1girl, socks | 20", true);
+	out("--e621: !fur tags, to, search | tag, to, filter | scores over", true);
+	out("      Example: !fur vocaloid, kagamine len | 1girl, socks | 20", true);
 	return;
 }
 
