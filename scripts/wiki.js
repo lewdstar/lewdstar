@@ -24,7 +24,7 @@ module.exports = function( input, out ) {
 
 				if ( obj[1].length > 0 ) {
 					if ( /refers? to:\s*$/ig.test(obj[2][0]) ) {
-						//Getting possible matches
+						//Getting possible matches of heading
 						var reg = new RegExp( query+ "\\s?\\(.*\\)","ig");
 
 						obj[1].forEach( function(item) {

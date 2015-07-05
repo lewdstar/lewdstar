@@ -9,7 +9,6 @@ module.exports = function(input, out) {
 if( input.regex[0].indexOf(' help') !== -1  ) {  
 	out("--Gelbooru: !cum: tags, to, search | tag, to, filter | scores over", true);
 	out("      Example: !cum: vocaloid, kagamine len | 1girl, socks | 20", true);
-	out("--Shotachan Gallery: !gal", true);
 	return;
 }
 
@@ -100,7 +99,7 @@ if( input.regex[0].indexOf(' help') !== -1  ) {
 					if( parseInt(post.getAttribute("score")) < score_thres || isReject ) {
 						getPic();
 					} else {
-						out(post.getAttribute("file_url") +" (Source: "+ post.getAttribute("source")+") "+count+" results." );
+						out(post.getAttribute("file_url") +" <Source: "+ post.getAttribute("source")+"> "+count+" results." );
 					}
 				});
 		}).on('error', function(e) {

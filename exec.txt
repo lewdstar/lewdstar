@@ -1,4 +1,5 @@
 #shota,#debug,PRIVATE ^!cum\:?([\w,\s()-+]*)(\|([\w,\s()]*)\|?(\-?[0-9]+)?)? ./scripts/gelbooru
+#shota,#debug,PRIVATE ^!fur\:?([\w,\s()-+]*)(\|([\w,\s()]*)\|?(\-?[0-9]+)?)? ./scripts/e621
 #shota,#debug,PRIVATE ^!define[\:\s]?(.*) ./scripts/urban
 #shota,#debug,PRIVATE ^!wiki\s+(.*) ./scripts/wiki
 #shota,#debug,PRIVATE ^!sick ./scripts/sickipedia
