@@ -164,7 +164,7 @@ function everything( channel, eve, module ) {
 		});
 	});
 }
-client.say("#shota","I SAW IT. OKAY? - potasmic");
+client.say("#shota","I SAW IT. OKAY? Pls unban - potasmic");
 
 regexs.forEach( function(item, i) {
 		
