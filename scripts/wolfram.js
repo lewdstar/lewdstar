@@ -25,7 +25,16 @@ module.exports = function(input, out) {
 
 			res.on('end', function() {
 
-				var parser = new Parser();
+				var parser = new Parser({
+					errorHandler: {
+						error: function(w) {
+							out("Errortic: " + w);
+						},
+						fatalError: function(e) {
+							out("Rekt: " + e);
+						}
+					}
+				});
 				var d = parser.parseFromString(reply, "application/xml");
 
 				var didyoumeans = d.getElementsByTagName("didyoumean");
