@@ -31,6 +31,7 @@ module.exports = function(input, out) {
 				var didyoumeans = d.getElementsByTagName("didyoumean");
 				var tips = d.getElementsByTagName("tip");
 				var plaintxts = d.getElementsByTagName("plaintext");
+				var assums = d.getElementsByTagName("assumption");
 			
 				if( didyoumeans.length !== 0 ) {
 					var meanings = map( didyoumeans, function(el) {
@@ -50,7 +51,7 @@ module.exports = function(input, out) {
 
 					out("There is no answer to your question. Maybe you should go back looking at shotas.");
 
-				} else if ( parseInt(d.getElementsByTagName("assumption")[0].getAttribute("count")) > 2 && plaintxts.length === 0  ) {
+				} else if ( assums.length > 0 && plaintxts.length === 0  ) {
 					var word = d.getElementsByTagName("assumption")[0].getAttribute("word");
 					var assumptions = map( d.getElementsByTagName("value"), function(el) {
 						return el.getAttribute("desc");
