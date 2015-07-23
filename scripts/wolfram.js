@@ -78,6 +78,14 @@ module.exports = function(input, out) {
 							count++;
 						}
 					});
+
+					if( count == 0 ) {
+						forEach(plaintxts, function(el) {
+						if ( count > MAX_OUT ) return;
+						out(el.textContent.replace(/\n/ig," "));
+						count++;
+					});
+					}
 				}
 
 			});
