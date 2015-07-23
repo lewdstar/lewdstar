@@ -74,7 +74,7 @@ module.exports = function(input, out) {
 					forEach(plaintxts, function(el) {
 						if ( count > MAX_OUT ) return;
 						if( el.parentNode.parentNode.getAttribute("primary") == "true" ) {
-							out(el.textContent.replace(/\n/ig," ").replace(/\\\:/ig,"\\"));
+							out(el.textContent.replace(/\n/ig," ").replace(/\\\:/ig,"\\u"));
 							count++;
 						}
 					});
