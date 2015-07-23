@@ -74,17 +74,29 @@ module.exports = function(input, out) {
 					forEach(plaintxts, function(el) {
 						if ( count > MAX_OUT ) return;
 						if( el.parentNode.parentNode.getAttribute("primary") == "true" ) {
-							out(el.textContent.replace(/\n/ig," ").replace(/\\\:/ig,"\\u"));
+							out(unescape(
+								el.textContent
+								.replace(/\n/ig," ").replace(/\\\:/ig,"\\u")
+								.replace(/\\u([\d\w]{4})/gi, function (match, grp) {
+    							return String.fromCharCode(parseInt(grp, 16)); 
+    							})
+							));
 							count++;
 						}
 					});
 
 					if( count == 0 ) {
 						forEach(plaintxts, function(el) {
-						if ( count > MAX_OUT ) return;
-						out(el.textContent.replace(/\n/ig," ").replace(/\\\:/ig,"\\u"));
-						count++;
-					});
+							if ( count > MAX_OUT ) return;
+								out(unescape(
+									el.textContent
+									.replace(/\n/ig," ").replace(/\\\:/ig,"\\u")
+									.replace(/\\u([\d\w]{4})/gi, function (match, grp) {
+	    							return String.fromCharCode(parseInt(grp, 16)); 
+	    							})
+								));						
+								count++;
+						});
 					}
 				}
 
