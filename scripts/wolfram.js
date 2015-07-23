@@ -74,7 +74,7 @@ module.exports = function(input, out) {
 					forEach(plaintxts, function(el) {
 						if ( count > MAX_OUT ) return;
 						if( el.parentNode.parentNode.getAttribute("primary") == "true" ) {
-							out(el.textContent.replace(/\n/ig," ").replace(/\\(:)(?=[a-f0-9]{4})/g,""));
+							out(el.textContent.replace(/\n/ig," ").replace(/\\\:/ig,"\\"));
 							count++;
 						}
 					});
@@ -82,7 +82,7 @@ module.exports = function(input, out) {
 					if( count == 0 ) {
 						forEach(plaintxts, function(el) {
 						if ( count > MAX_OUT ) return;
-						out(el.textContent.replace(/\\\:/ig,"\\"));
+						out(el.textContent.replace(/\n/ig," ").replace(/\\\:/ig,"\\"));
 						count++;
 					});
 					}
