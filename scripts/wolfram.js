@@ -5,7 +5,7 @@ var Parser = require('xmldom').DOMParser;
 
 var APP_ID = "723J9K-TE84UXAVAE";
 var API_ROOT = "http://api.wolframalpha.com/v2/query?input=";
-var MAX_OUT = 4;
+var MAX_OUT = 240;
 
 module.exports = function(input, out) {
 	var query = input.regex[1];
@@ -81,7 +81,7 @@ module.exports = function(input, out) {
     							return String.fromCharCode(parseInt(grp, 16)); 
     							})
 							));
-							count++;
+							count += el.textContent.length;
 						}
 					});
 
@@ -95,8 +95,12 @@ module.exports = function(input, out) {
 	    							return String.fromCharCode(parseInt(grp, 16)); 
 	    							})
 								));						
-								count++;
+								count += el.textContent.length;
 						});
+					}
+
+					if( count > MAX_OUT ) {
+						out("...");
 					}
 				}
 
