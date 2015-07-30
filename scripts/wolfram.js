@@ -100,7 +100,7 @@ module.exports = function(input, out) {
 					}
 
 					if( count > MAX_OUT ) {
-						out("... <More at: http://www.wolframalpha.com/input/?i=" +query+ " >");
+						out("... <More at: http://www.wolframalpha.com/input/?i=" +encodeURIComponent(query)+ " >");
 					}
 				}
 
