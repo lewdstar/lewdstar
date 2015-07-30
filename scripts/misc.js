@@ -8,8 +8,9 @@ module.exports = function(input, out, extra) {
 		out("Source available on GitHub: " + "http://github.com/ptskh/schbot");
 	}
 	else if ( what == "help" ) {
-		out("Available commands: define, wiki, source, help, sick, gal, cum, stfu, unmute, roll, choose. PM !help for more.");
+		out("Available commands: define, wiki, source, help, sick, gal, cum, stfu, unmute, roll, choose, ?. PM !help for more.");
 		if ( extra.from.substr(0,1) != "#" ) {
+			out("? [query]: Queries to Wolfram|Alpha. ", true)
 			out("cum [keywords] [, keyword2] | [filter] [, filter 2] | [rating above]: Returns a random image from Gelbooru.", true);
 			out("gal: returns a random image from the Shotachan Gallery", true);
 			out("define [text] : Fetch definition of a word from UrbanDictionary. ", true);
