@@ -75,7 +75,7 @@ if( input.regex[0].indexOf(' help') !== -1  ) {
 			out('Something wrong happened: '+e.message);
 		});
 
-		req.setTimeout(3000, function() {
+		req.setTimeout(5598, function() {
 			out("Took too long. Dismissing."); return;
 		})
 	}
@@ -111,7 +111,7 @@ if( input.regex[0].indexOf(' help') !== -1  ) {
 			out('You almost got your eye-candy but something happened: '+e.message);
 		});
 
-		req.setTimeout(3000, function() {
+		req.setTimeout(5598, function() {
 			out("Took too long for your pic. Dismissing."); return;
 		})
 
