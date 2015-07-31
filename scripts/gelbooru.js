@@ -47,7 +47,7 @@ if( input.regex[0].indexOf(' help') !== -1  ) {
 
 	var getCount = function(tags) {
 		var response = "";
-		http.get("http://gelbooru.com/index.php?page=dapi&s=post&q=index&limit=0&tags="+validizeTags(tags), function(res) {
+		var req = http.get("http://gelbooru.com/index.php?page=dapi&s=post&q=index&limit=0&tags="+validizeTags(tags), function(res) {
 			res.on('data', function(data) {
 				response += data;
 			});
@@ -74,6 +74,10 @@ if( input.regex[0].indexOf(' help') !== -1  ) {
 			console.log(e); 
 			out('Something wrong happened: '+e.message);
 		});
+
+		req.setTimeout(3000, function() {
+			out("Took too long. Dismissing.")
+		})
 	}
 
 	var getPic = function() {
