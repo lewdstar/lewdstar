@@ -77,7 +77,7 @@ if( input.regex[0].indexOf(' help') !== -1  ) {
 	}
 
 	var getPic = function() {
-		if ( offset > count  || offset > 20)  { out("I tried to look for fur-pr0n, I failed. (20 rounds)"); return; }
+		if ( offset > count  || offset > 20)  { out("I tried to look f-fur-pr0n, I failed. (20 rounds)"); return; }
 
 		var response = "";
 		
@@ -91,6 +91,10 @@ if( input.regex[0].indexOf(' help') !== -1  ) {
 					var doc    = parser.parseFromString(response,"application/xml");
 
 						post = doc.getElementsByTagName("post")[0];
+
+					if( post == undefined ) {
+						out("Knot a chance! <Something went wrong and I didn't even bother fixing it correctly.>"); return;
+					}
 
 					var isReject =	rejs.some(function(rej){
 						return post.getAttribute("tags").indexOf(rej) !== -1;
