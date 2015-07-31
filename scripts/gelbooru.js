@@ -85,7 +85,7 @@ if( input.regex[0].indexOf(' help') !== -1  ) {
 
 		var response = "";
 		
-		http.get("http://gelbooru.com/index.php?page=dapi&s=post&q=index&limit=1&pid="+Math.floor(Math.random()*count)+"&tags="+validizeTags(tags), 
+		var req = http.get("http://gelbooru.com/index.php?page=dapi&s=post&q=index&limit=1&pid="+Math.floor(Math.random()*count)+"&tags="+validizeTags(tags), 
 			function(res) {
 				res.on('data', function(data) {
 					response += data;
@@ -110,6 +110,10 @@ if( input.regex[0].indexOf(' help') !== -1  ) {
 			console.log(e);
 			out('You almost got your eye-candy but something happened: '+e.message);
 		});
+
+		req.setTimeout(3000, function() {
+			out("Took too long for your pic. Dismissing.")
+		})
 
 		offset++;
 		console.log("Searched ",offset,"of ",count);
