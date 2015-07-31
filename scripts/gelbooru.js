@@ -76,7 +76,7 @@ if( input.regex[0].indexOf(' help') !== -1  ) {
 		});
 
 		req.setTimeout(3000, function() {
-			out("Took too long. Dismissing.")
+			out("Took too long. Dismissing."); return;
 		})
 	}
 
@@ -112,7 +112,7 @@ if( input.regex[0].indexOf(' help') !== -1  ) {
 		});
 
 		req.setTimeout(3000, function() {
-			out("Took too long for your pic. Dismissing.")
+			out("Took too long for your pic. Dismissing."); return;
 		})
 
 		offset++;
