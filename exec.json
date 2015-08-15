@@ -1,0 +1,59 @@
+{
+	"messageListeners": [
+		{
+			"script": "./scripts/gelbooru",
+			"channels": ["#debug", "#shota"],
+			"regex": "^!cum\\:?([\\w,\\s()-+]*)(\\|([\\w,\\s()]*)\\|?(\\-?[0-9]+)?)?",
+			"private": true
+		},
+		{
+			"script" : "./scripts/e621",
+			"channels": ["#debug", "#shota"],
+			"regex": "^!fur\\:?([\\w,\\s()-+]*)(\\|([\\w,\\s()]*)\\|?(\\-?[0-9]+)?)?",
+			"private": true
+		},
+		{
+			"script" : "./scripts/urban",
+			"channels": ["#debug", "#shota"],
+			"regex": "^!define[\\:\\s]?(.*)",
+			"private": true
+		},
+		{
+			"script": "./scripts/wiki",
+			"channels": ["#debug", "#shota", "#maths"],
+			"regex": "^!wiki\\s+(.+)",
+			"private": true
+		},
+		{
+			"script" : "./scripts/sickipedia",
+			"channels": ["#debug", "#shota"],
+			"regex": "^!sick",
+			"private": true
+		},
+		{
+			"script": "./scripts/misc",
+			"channels": ["#debug", "#shota", "#maths"],
+			"regex": "^!([a-zA-Z]*)\\s?(.*)?",
+			"private": true
+		},
+		{
+			"script" : "./scripts/shiba",
+			"channels": ["#debug", "#shota"],
+			"regex": "^!shiba\\s*",
+			"private": true
+		},
+		{
+			"script" : "./scripts/wolfram",
+			"channels": ["#debug", "#shota", "#maths"],
+			"regex": "^!\\?\\s+(.*)",
+			"private": true
+		}
+	],
+	"customListeners": [
+		{
+			"event": "action",
+			"script": "./scripts/actionback.js",
+			"channels" : ["#shota", "#debug"]
+		}
+	]
+}

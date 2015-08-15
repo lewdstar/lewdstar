@@ -13,7 +13,7 @@ module.exports = function( input, out ) {
 		var rep = "";
 		http.get("https://en.wikipedia.org/w/api.php?action=opensearch&search="+validize(query), function(res) {
 			res.on('data', function(dat) {
-				rep += dat; console.log("Chunk: "+dat);
+				rep += dat;
 			});
 			res.on('end', function() {
 				try {

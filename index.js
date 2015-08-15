@@ -1,13 +1,30 @@
 process.stdin.setEncoding('utf8');
-//node index.js -n nick -s server -p port -e exec.txt [-help] [-i]
+//node index.js -n nick -s server -p port -e exec.json [-h] [-i]
 /**
 	Definition for exec.txt:
 
 	Content:
-	#channelName ^!regexMatch:(.*) ./processing_script.js
-	#otherChan   ^!foo:([a-zA-Z]*) ./foobar
-	PRIVATE 	 (.*) 			   ./parse_everything
-
+	{	messageListeners: [
+			{
+				script: "./scripts/cappy.js",
+				channels: ["#test", "#debug"],
+				regex: "^!test:(.*)",
+				private: false
+			},
+			{
+				script: "./scripts/anotherScript",
+				channels: [],
+				regex: "^PMOnly",
+				private: true
+			}
+		],
+		customListeners: [{
+			event: "action",
+			script: "./scripts/wow.js",
+			autostart: true
+		}]
+	
+	}
 **/
 
 /**
@@ -27,11 +44,19 @@ var os  = require('os');
 var fs  = require('fs');
 var color = require('ansi-color').set;
 
-var port = process.argv.indexOf('-p') > 0 ? process.argv[process.argv.indexOf('-p')+1] : "6667";
-var exec = process.argv.indexOf('-e') > 0 ? process.argv[process.argv.indexOf('-e')+1] : "test.txt";
-var nick = process.argv.indexOf('-n') > 0 ? process.argv[process.argv.indexOf('-n')+1] : "defaultBotName";
-var info = process.argv.indexOf('-i') > 0 ? true : false ;
-var serv = process.argv.indexOf('-s') > 0 ? process.argv[process.argv.indexOf('-s')+1] : "irc.rizon.net";
+var port = process.argv.indexOf('-p') > 0 ? process.argv[process.argv.indexOf('-p')+1] : "6697";
+var exec = process.argv.indexOf('-e') > 0 ? process.argv[process.argv.indexOf('-e')+1] : null;
+var nick = process.argv.indexOf('-n') > 0 ? process.argv[process.argv.indexOf('-n')+1] : "Fuccboi";
+var serv = process.argv.indexOf('-s') > 0 ? process.argv[process.argv.indexOf('-s')+1] : null;
+
+if (exec == null) {
+	console.log(color("No executing file was given. Exiting...", "red"));
+	return;
+} 
+if (serv == null) {
+	console.log(color("No server was given. Exiting...", "red"));
+}
+
 
 if ( process.argv.indexOf('-h') !== -1 ) {
 	var txt = '\n';
@@ -48,140 +73,126 @@ if ( process.argv.indexOf('-h') !== -1 ) {
 	return;
 }
 
-var config = fs.readFileSync(exec);
-var channels = [], regexs =[], procs = [], raw = [];
-var mute_state = false;
-
-config.toString().split(os.EOL).forEach( function(line) { 
-		channels.push( line.split(' ')[0] );
-		  regexs.push( line.split(' ')[1] );
-		   procs.push( line.split(' ')[2] );
-
-	if ( line.split(' ')[3] !== undefined ) {
-		raw.push( true );
-	} else {
-		raw.push( false );
-	}
-
+var bot = new irc.Client(serv, nick, {
+	userName: "Fuccboi",
+	autoConnect: true,
+	port: port,
+	secure: true,
+	autoRejoin: true,
+	selfSigned: true,
+	certExpired: true,
+	floodProtection: true,
+	floodProtectionDelay: 350
 });
 
-global.client = new irc.Client(serv, nick, {port: port, channels: channels, certExpired: true, realName: "PotIRCl Instance"});
+try {
+	var configuration = JSON.parse(fs.readFileSync(exec).toString());
+	if( (configuration.messageListeners == undefined) && (configuration.customListeners == undefined) ) { throw Error("No listeners given."); }
+} catch(e) {
+	console.log(color("Corrupted or invalid JSON file.", "red"));
+	console.log(e);
+	process.exit();
+}
 
-client.addListener('error', function(error) {
-	if(error.args[2] !== "PRIVATE" && error.rawCommand === 403) console.log(error);
+bot.addListener('error', function(e) {
+	console.log(color("Error: ", "red"));
+	console.log(e);
 });
 
-//Utils
-function mute() {
-	mute_state = true;
-}
-function unmute() {
-	mute_state = false;
-}
-function getState() {
-	return mute_state;
-}
+bot.addListener('registered', function(msg) {
+	//NS
+	console.log("-   " + color("Authing: ", "cyan_bg") + "NickServ");
+	bot.say("NickServ","IDENTIFY shotacat");
 
-function listen(channel, regex, module) {
-	var proc   = require( module );
+	//join channels and listen
+	initMessageListeners();
+});
 
-	if ( channel !== "PRIVATE" ) { 
 
-			client.addListener("message"+channel, function(from, msg) {
-				var message = {};
-				    message.regex = regex.exec(msg);
-				    message.from  = from;
-				
-				if ( regex.test(msg) ) {
-					//Callback
-					
-						proc(message, function(txt, pm) {
-							if( mute_state !== true ) {
-								if(!pm) {
-									client.say(channel, txt);
-								} else {
-									client.say(from, txt);
-								}
-							}
-						},
-						{
-							from: channel,
-							client: client,
-							bot: {
-								mute: mute,
-								unmute: unmute,
-								getState: getState
-							}
-						});
-					
+function initMessageListeners() {
+	//Join channels
+	configuration.messageListeners.forEach( function(listener) {
+		if( listener.channels.length > 0 ) {
+			listener.channels.forEach( function(channel) {
+				console.log("--  " + color("Joining: ", "green_bg") + channel);
+				bot.join(channel);
+			})
+		}
+	});
+
+	//Attach Message Listeners
+	configuration.messageListeners.forEach( function(listener) {
+		console.log("--- " + color("Binding: ", "yellow_bg") + listener.script + " with " + color(listener.regex,"green") + " in:");
+
+		var processor = require(listener.script);
+
+		//Private?
+		if(listener.private == true) {
+			bot.addListener("pm", function(from, message) {
+
+				var input = 
+					{
+						from: from,
+						regex: (new RegExp(listener.regex)).exec(message)
+					};
+				var extra = 
+					{
+						from: from,
+						client: bot
+					};
+
+				if( (new RegExp(listener.regex)).test(message) ) {
+					processor(input, function(txt) {
+						bot.say(from, txt);
+					}, extra);
 				}
 
-			});
-
-		} else {
-
-			client.addListener("pm", function(from, msg) {
-				var message = {};
-				    message.regex = regex.exec(msg);
-					message.from  = from;
-
-				if ( regex.test(msg) ) {
-					//Callback
-					proc(message, function(txt) {
-							client.say(from, txt);
-						}, 
-						{
-							from: from,
-							client: client,
-							bot: {
-								mute: mute,
-								unmute: unmute,
-								getState: getState
-							}
-						});
-					
-				}
 			});
 		}
-}
+		
+		//Channel.
+		listener.channels.forEach(function(channel) {
+			console.log("    +--> " + color(channel,"yellow"));
 
-function everything( channel, eve, module ) {
-	var proc = require( module );
+			bot.addListener("message"+channel, function( from, message ) {
 
-	client.addListener(eve, function() {
-		var args = arguments;
-		proc( args, function( txt ) {
-			client.say( channel, txt);
-		},
-		{
-			channel: channel,
-			client: client,
-			bot: {
-				mute: mute,
-				unmute: unmute,
-				getState: getState
-			}
+				var input = 
+					{ 
+						from: from,
+					 	regex: (new RegExp(listener.regex)).exec(message)
+					};
+				var extra = 
+					{
+						from: channel,
+						client: bot
+					};
+
+				if( (new RegExp(listener.regex)).test(message) ) {
+
+					processor(input, function(txt, pm) {
+						if(!pm) {
+							bot.say(channel, txt);
+						} else {
+							bot.say(from, txt);
+						}
+					}, extra);
+
+				}
+
+			});
+		});
+
+	});
+
+	//Attach RAW Custom Listeners
+	configuration.customListeners.forEach( function(listener) {
+		console.log("----"+color("Binding: ", "magenta_bg") + listener.script + " with event " + color(listener.event, "green"));
+
+		var processor = require(listener.script);
+
+		bot.addListener(listener.event, function() {
+			processor(arguments, listener.channels, bot);
 		});
 	});
-}
-
-
-regexs.forEach( function(item, i) {
-		
-		//Node on *nix has some problems with EOL splitting.
-	    if(procs[i] === undefined ) return;	
-		
-
-		console.log("Binding: "+color(channels[i].split(","),"yellow")+" with "+color(regexs[i],"cyan")+" through "+color(procs[i], "magenta"));
-
-		channels[i].split(",").forEach( function(channel, j) {
-			if( raw[i] !== true ) {
-				listen( channel.trim(), new RegExp(regexs[i]), procs[i]);
-			} else {
-				everything( channel.trim(), regexs[i], procs[i] );
-			}
-		});
-		
-});
-
+} 
 

@@ -1,13 +1,15 @@
 // action
 
-module.exports = function(input, out, extra) {
+module.exports = function(input, channels, bot) {
+	//              1    2   3   4
 	//input --> { from, to, text, raw }
-	var recog = /([a-zA-Z0-9\s]+)\s((k|K)ariya|(p|P)oti(skh)?)([\'a-zA-Z0-9\s]*)/; 
+	console.log(input);
+	var recog = /([a-zA-Z0-9\s]+)\s((f|F)uccboi|(p|P)oti(skh)?)([\'a-zA-Z0-9\s]*)/; 
 
-	if( recog.test(input[2]) && input[1] == extra.channel ) {
+	if( recog.test(input[2]) && channels.indexOf(input[1]) !== -1  ) {
 		var parts = recog.exec(input[2]);
 		setTimeout( function() {
-			extra.client.action(input[1], parts[1] + " " + input[0]  + parts[6]);
+			bot.action(input[1], parts[1] + " " + input[0]  + parts[6]);
 		},1500);
 	}
 }
