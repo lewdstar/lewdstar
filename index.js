@@ -103,13 +103,13 @@ bot.addListener('error', function(e) {
 bot.addListener('registered', function(msg) {
 	//NS
 	console.log("-   " + color("Authing: ", "cyan_bg") + "NickServ");
-	(function auth() { 
-		if (bot.nick == nick) return;
+	(function auth(z) { 
+		if (bot.nick == nick && z !== 1) return;
 		bot.send ("NICK", nick);
 		bot.say("NickServ","IDENTIFY shotacat");
 		setTimeout(auth, 3000);
-	})();
-	
+	})(1);
+
 	//join channels and listen
 	initMessageListeners();
 });
