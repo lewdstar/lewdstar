@@ -54,6 +54,14 @@
 			"event": "action",
 			"script": "./scripts/actionback.js",
 			"channels" : ["#shota", "#debug"]
+		},
+		{
+			"event": "+mode",
+			"script": "./scripts/voiced"
+		},
+		{
+			"event": "-mode",
+			"script": "./scripts/voiced-"
 		}
 	]
 }
