@@ -13,7 +13,7 @@ if( input.regex[0].indexOf(' help') !== -1  ) {
 }
 
 
-	var tags = ["shota"];
+	var tags = (input.regex[4] < 0 ) ? [] : ["shota"];
 	var rejs = [];
 	var score_thres = 0;
 	var count = 0;
