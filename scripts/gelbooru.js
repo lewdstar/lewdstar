@@ -26,7 +26,7 @@ if( input.regex[0].indexOf(' help') !== -1  ) {
 			tags.push( input.regex[1].trim().split(',')[i].trim() );
 		}
 		//Throwback
-		if( tags.length < 3 && tags[1] === "" ) {
+		if( tags.length < 3 && tags[1] === "" && (parseInt(input.regex[4]) < 0)  ) {
 			tags.push("inazuma eleven");
 		}
 		//Fill rejections
