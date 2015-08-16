@@ -74,6 +74,7 @@ if ( process.argv.indexOf('-h') !== -1 ) {
 }
 
 var bot = new irc.Client(serv, nick, {
+	realName: "Savid Euneva",
 	userName: "Fuccboi",
 	autoConnect: true,
 	port: port,
@@ -102,8 +103,13 @@ bot.addListener('error', function(e) {
 bot.addListener('registered', function(msg) {
 	//NS
 	console.log("-   " + color("Authing: ", "cyan_bg") + "NickServ");
-	bot.say("NickServ","IDENTIFY shotacat");
-
+	(function auth() { 
+		if (bot.nick == nick) return;
+		bot.send ("NICK", nick);
+		bot.say("NickServ","IDENTIFY shotacat");
+		setTimeout(auth, 3000);
+	})();
+	
 	//join channels and listen
 	initMessageListeners();
 });
