@@ -108,14 +108,18 @@ bot.addListener('registered', function(msg) {
 	initMessageListeners();
 });
 
+var joinedChannels = [];
 
 function initMessageListeners() {
 	//Join channels
 	configuration.messageListeners.forEach( function(listener) {
 		if( listener.channels.length > 0 ) {
 			listener.channels.forEach( function(channel) {
-				console.log("--  " + color("Joining: ", "green_bg") + channel);
-				bot.join(channel);
+				if( joinedChannels.indexOf(channel) == -1 ) {
+					console.log("--  " + color("Joining: ", "green_bg") + channel);
+					bot.join(channel);
+					joinedChannels.push(channel);
+				}
 			})
 		}
 	});
