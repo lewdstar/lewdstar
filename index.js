@@ -104,10 +104,10 @@ bot.addListener('registered', function(msg) {
 	//NS
 	console.log("-   " + color("Authing: ", "cyan_bg") + "NickServ");
 	(function auth(z) { 
+		setTimeout(auth, 3000);
 		if (bot.nick == nick && z !== 1) return;
 		bot.send ("NICK", nick);
 		bot.say("NickServ","IDENTIFY shotacat");
-		setTimeout(auth, 3000);
 	})(1);
 
 	//join channels and listen
