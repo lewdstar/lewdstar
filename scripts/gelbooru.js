@@ -13,7 +13,7 @@ if( input.regex[0].indexOf(' help') !== -1  ) {
 }
 
 
-	var tags = (parseInt(input.regex[4]) < 0 ) ? [] : ["shota"];
+	var tags = ["shota"];
 	var rejs = [];
 	var score_thres = 0;
 	var count = 0;
@@ -26,7 +26,7 @@ if( input.regex[0].indexOf(' help') !== -1  ) {
 			tags.push( input.regex[1].trim().split(',')[i].trim() );
 		}
 		//Throwback
-		if( tags.length < 3 && tags[1] === "" && (parseInt(input.regex[4]) < 0)  ) {
+		if( tags.length < 3 && tags[1] === "" ) {
 			tags.push("inazuma eleven");
 		}
 		//Fill rejections
