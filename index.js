@@ -111,6 +111,7 @@ bot.addListener('registered', function(msg) {
 	(function auth(z) { 
 		setTimeout(auth, 3000);
 		if (bot.nick == nick && z !== 1) return;
+		bot.say("NickServ","GHOST Fuccboi shotacat");
 		bot.send ("NICK", nick);
 		bot.say("NickServ","IDENTIFY shotacat");
 	})(1);
