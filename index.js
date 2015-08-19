@@ -89,6 +89,9 @@ var bot = new irc.Client(serv, nick, {
 try {
 	var configuration = JSON.parse(fs.readFileSync(exec).toString());
 	if( (configuration.messageListeners == undefined) && (configuration.customListeners == undefined) ) { throw Error("No listeners given."); }
+	if( !(configuration.config.negations instanceof Array) ) { throw Error("Negation list is not an array. You can leave it blank, FYI."); }
+	if( !(configuration.config.quitMessage instanceof Array) ) { throw Error("No Quit message? You can leave it black, FYI."); }
+
 } catch(e) {
 	console.log(color("Corrupted or invalid JSON file.", "red"));
 	console.log(e);
@@ -100,6 +103,8 @@ bot.addListener('error', function(e) {
 	console.log(e);
 });
 
+
+//Connected
 bot.addListener('registered', function(msg) {
 	//NS
 	console.log("-   " + color("Authing: ", "cyan_bg") + "NickServ");
@@ -116,12 +121,12 @@ bot.addListener('registered', function(msg) {
 
 var joinedChannels = [];
 
-function initMessageListeners() {
+function initMessageListeners(callback) {
 	//Join channels
 	configuration.messageListeners.forEach( function(listener) {
 		if( listener.channels.length > 0 ) {
 			listener.channels.forEach( function(channel) {
-				if( joinedChannels.indexOf(channel) == -1 ) {
+				if( joinedChannels.indexOf(channel) == -1 && configuration.config.negations.indexOf(channel) == -1 ) {
 					console.log("--  " + color("Joining: ", "green_bg") + channel);
 					bot.join(channel);
 					joinedChannels.push(channel);
@@ -162,6 +167,10 @@ function initMessageListeners() {
 		
 		//Channel.
 		listener.channels.forEach(function(channel) {
+			//Negation channels
+			if( configuration.config.negations.indexOf(channel) !== -1 ) return;
+
+			//Logging
 			console.log("    +--> " + color(channel,"yellow"));
 
 			bot.addListener("message"+channel, function( from, message ) {
@@ -204,5 +213,19 @@ function initMessageListeners() {
 			processor(arguments, listener.channels, bot);
 		});
 	});
+
+	if (callback instanceof Function) callback();
 } 
 
+//Handling exits
+function properKill() {
+	var bye = configuration.config.quitMessage[Math.floor(configuration.config.quitMessage.length*Math.random())];
+
+	bot.disconnect(bye, function() {
+		process.exit("Bye");
+	});
+}
+
+
+process.on('SIGINT', properKill);
+process.on('SIGTERM', properKill);
