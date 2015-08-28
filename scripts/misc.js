@@ -23,14 +23,6 @@ module.exports = function(input, out, extra) {
 			out("choose [item1, item2, item3]: choose a random item.", true);
 		}
 	}
-	else if ( what == "stfu" && extra.from.substr(0,1) == "#") {
-		out("Bot mute state: "+ !extra.bot.getState());
-		extra.bot.mute();
-	}
-	else if ( what == "unmute" ) {
-		extra.bot.unmute();
-		out("Bot mute state: "+extra.bot.getState());
-	}
 	else if ( what == "roll" ) {
 		spec = (spec == "")? 100 : spec;
 		out( Math.round( 1 + (Math.random() * (parseInt(spec)-1) )  ));

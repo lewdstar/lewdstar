@@ -58,6 +58,6 @@
 	],
 	"config": {
 		"negations": [],
-		"quitMessage": ["Is this real life? Is this fantasy?", "I'm leaving. Am I coming back? Who knows. I'm a bot."]
+		"quitMessage": ["Is this the real life? Is this just fantasy?", "I'm leaving. Am I coming back? Who knows. I'm a bot."]
 	}
 }
