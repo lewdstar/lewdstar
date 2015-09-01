@@ -109,13 +109,12 @@ bot.addListener('registered', function(msg) {
 	//NS
 	console.log("-   " + color("Authing: ", "cyan_bg") + "NickServ");
 	(function auth(z) { 
-		setTimeout(auth, 3000);
 		if (bot.nick == nick && z !== 1) return;
-		bot.say("NickServ","GHOST Fuccboi shotacat");
+		bot.say("NickServ","GHOST "+bot.nick+" shotacat");
 		bot.send ("NICK", nick);
 		bot.say("NickServ","IDENTIFY shotacat");
 	})(1);
-
+	setTimeout(auth, 3000);
 	//join channels and listen
 	initMessageListeners();
 });
