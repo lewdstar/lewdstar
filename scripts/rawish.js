@@ -2,7 +2,7 @@
 
 module.exports = function(input, chans, bot) {
 	var raw = input[0];
-	var admins = ["shotacat","aspect", "TRG", "Kiggy", "uid24615"];
+	var admins = ["shotacat","aspect", "TRG", "Kiggy", "uid24615", "Kenpari", "Jamie"];
 	//le krill
 	if( raw.command == "PRIVMSG" && raw.args[1] == "$ kill "+ bot.nick && admins.indexOf(raw.user) !== -1 ) {
 		bot.disconnect("Kill requested by " + raw.user, function() {
@@ -16,7 +16,7 @@ module.exports = function(input, chans, bot) {
 	//le join
 	if( raw.command == "PRIVMSG" && raw.args[1].substr(0,8) == "$ invite" && admins.indexOf(raw.user) !== -1 ) {
 		bot.join(raw.args[1].split(" ")[2] , function() {
-			bot.notice(raw.args[1].split(" ")[2], "Hello. I have been summoned by " + raw.user);
+			bot.say(raw.args[1].split(" ")[2], "Hello. I have been summoned by " + raw.user);
 		});
 	}
 }
