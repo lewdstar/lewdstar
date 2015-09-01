@@ -108,13 +108,14 @@ bot.addListener('error', function(e) {
 bot.addListener('registered', function(msg) {
 	//NS
 	console.log("-   " + color("Authing: ", "cyan_bg") + "NickServ");
-	(function auth(z) { 
-		if (bot.nick == nick && z !== 1) return;
-		bot.say("NickServ","GHOST "+bot.nick+" shotacat");
-		bot.send ("NICK", nick);
-		bot.say("NickServ","IDENTIFY shotacat");
+	(function auth(k) { 
+			bot.send ("NICK", nick);
+			if (bot.nick == nick && k !== 1 && configuration.config.register.bool !== true) return;
+			bot.say("NickServ","GHOST "+ configuration.config.register.username +" "+ configuration.config.register.password);
+			bot.say("NickServ","IDENTIFY " + configuration.config.register.password );
+		//setTimeout(auth, 3000);
 	})(1);
-	setTimeout(auth, 3000);
+	
 	//join channels and listen
 	initMessageListeners();
 });
@@ -222,8 +223,9 @@ function properKill() {
 	var bye = configuration.config.quitMessage[Math.floor(configuration.config.quitMessage.length*Math.random())];
 
 	bot.disconnect(bye, function() {
-		process.exit("Bye");
+		
 	});
+	setTimeout(function() { process.exit("Bye"); }, 1000 );
 }
 
 

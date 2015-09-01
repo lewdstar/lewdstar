@@ -54,12 +54,22 @@
 			"event": "action",
 			"script": "./scripts/actionback.js",
 			"channels" : ["#shota", "#debug"]
+		},
+		{
+			"event": "raw",
+			"script": "./scripts/rawish.js",
+			"channels" : ["#shota", "#debug"]
 		}
 	],
 	"config": {
 		"negations": [],
 		"quitMessage": ["Is this the real life? Is this just fantasy?", "I'm leaving. Am I coming back? Who knows. I'm a bot.", 
 						"Potiskh is my master", "git push origin master", "ShotaCat plz suck my hard cock",
-						"git gud", "knok knok. who dere? u. u who? u da hoe.", "PRIVMSG NICKSERV GHOST ShotaCat InternetCat9001"]
+						"git gud", "knok knok. who dere? u. u who? u da hoe.", "PRIVMSG NICKSERV GHOST ShotaCat InternetCat9001"],
+		"register" : {
+			"bool" : true,
+			"username" : "Fuccboi",
+			"password" : "shotacat"
+		}
 	}
 }
