@@ -10,13 +10,13 @@ module.exports = function(input, chans, bot) {
 		})
 	}
 	//le part
-	if( raw.command == "PRIVMSG" && raw.args[1] == "$ part" && admins.indexOf(raw.user) !== -1 ) {
+	if( raw.command == "PRIVMSG" && raw.args[1] == "$ part "+ bot.nick && admins.indexOf(raw.user) !== -1 ) {
 		bot.part(raw.args[0],"Parting requested by " + raw.user);
 	}
 	//le join
-	if( raw.command == "PRIVMSG" && raw.args[1].substr(0,8) == "$ invite" && admins.indexOf(raw.user) !== -1 ) {
+	if( raw.command == "PRIVMSG" && raw.args[1].substr(0,8) == "$ invite") {
 		bot.join(raw.args[1].split(" ")[2] , function() {
-			bot.say(raw.args[1].split(" ")[2], "Hello. I have been summoned by " + raw.user);
+			bot.say(raw.args[1].split(" ")[2], "Hello. I have been summoned by " + raw.user +". "+bot.nick+ " is ready to rock & roll!");
 		});
 	}
 }
