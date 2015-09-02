@@ -32,12 +32,13 @@ module.exports = function(input, chans, bot) {
 	if ( !(bot.features.pipes instanceof Array)  ) bot.features.pipes = []; 
 
 	if( raw.command == "PRIVMSG" && raw.args[1].substr(0,6) == "$ pipe" && admins.indexOf(raw.user) !== -1 ) {
+		if( raw.args[1].split(" ").length < 4 ) { bot.say(raw.args[0], "Insufficient params."); return; }
 		var source = raw.args[1].split(" ")[2].trim();
 		var target = raw.args[1].split(" ")[3].trim();
 
 		if(source == bot.nick || target == bot.nick) { bot.say(raw.args[0], bot.color("dark_red", "Please don't.")); return; }
 		bot.features.pipes.push( {src: source, targ: target} );
-		bot.say(raw.args[0], "Pipe initiated from: " + bot.color("magenta", source + " --> " + target));
+		bot.say(raw.args[0], "Pipe initiated from: " +  source + " --> " + target);
 
 		//--- New Channel listener or nah?
 		if( bot.features.pipes.length === 1 && bot.features.pipesEnabled !== true ) { bot.features.pipesEnabled = true;
@@ -53,6 +54,7 @@ module.exports = function(input, chans, bot) {
 
 	//le unpipe 
 	if( raw.command == "PRIVMSG" && raw.args[1].substr(0,8) == "$ unpipe" && admins.indexOf(raw.user) !== -1 ) {
+		if( raw.args[1].split(" ").length < 4 ) { bot.say(raw.args[0], "Insufficient params."); return; }
 		var source = raw.args[1].split(" ")[2].trim();
 		var target = raw.args[1].split(" ")[3].trim();
 		var removed = 0;
@@ -63,6 +65,6 @@ module.exports = function(input, chans, bot) {
 		});
 		var plural = removed > 1? "s": "";
 		if( removed > 0 ) bot.say(raw.args[0], "Found "+removed+" occurence"+plural+". Pipe has been dismantled.");
-		if( removed == 0 ) bot.say(raw.args[0], bot.color("light_red", "Did not found any pipe with such configuration."));
+		if( removed == 0 ) bot.say(raw.args[0], "Did not found any pipe with such configuration.");
 	}	
 }
