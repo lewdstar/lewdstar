@@ -29,31 +29,40 @@ module.exports = function(input, chans, bot) {
 	}
 
 	//le pipe (experimental and dangerous) 
-	if ( !(bot.features.pipes instanceof Array)  ) bot.features.pipes = [];
+	if ( !(bot.features.pipes instanceof Array)  ) bot.features.pipes = []; 
 
 	if( raw.command == "PRIVMSG" && raw.args[1].substr(0,6) == "$ pipe" && admins.indexOf(raw.user) !== -1 ) {
 		var source = raw.args[1].split(" ")[2].trim();
 		var target = raw.args[1].split(" ")[3].trim();
+
+		if(source == bot.nick || target == bot.nick) { bot.say(raw.args[0], bot.color("dark_red", "Please don't.")); return; }
 		bot.features.pipes.push( {src: source, targ: target} );
-		bot.say(raw.args[0], "Pipe initiated from: " + color(source + " --> " + target, "red+black_bg"));
+		bot.say(raw.args[0], "Pipe initiated from: " + bot.color("magenta", source + " --> " + target));
 
 		//--- New Channel listener or nah?
-		if( source.substr(0,1) == "#" ) {
-			var existed = bot.features.pipes.some(function(pipe) { return pipe.src == source });
-			if( !existed ) {
-				bot.addListener("message"+source, function(from, message) {
-					bot.features.pipes.forEach( function(pipe) {
-						if( pipe.src == source ) bot.say( pipe.targ, message);
-					});
+		if( bot.features.pipes.length === 1 && bot.features.pipesEnabled !== true ) { bot.features.pipesEnabled = true;
+			bot.addListener("raw", function(rawmsg) {
+				bot.features.pipes.forEach( function(pipe) { 
+					if( rawmsg.args[1].substr(0,1) == "$" || rawmsg.command !== "PRIVMSG" ) return;
+					if( pipe.src == rawmsg.args[0] ) bot.say( pipe.targ,  rawmsg.args[1]);
+					if( pipe.src == rawmsg.nick && rawmsg.args[0] == bot.nick ) bot.say( pipe.targ,  rawmsg.args[1]);
 				});
-			}
-		}
+			});
+		} 
 	}
-		
-	bot.addListener("pm", function(from, message) {
-		bot.features.pipes.forEach( function(pipe) {
-			if(pipe.src == from) bot.say( pipe.targ , message);
+
+	//le unpipe 
+	if( raw.command == "PRIVMSG" && raw.args[1].substr(0,8) == "$ unpipe" && admins.indexOf(raw.user) !== -1 ) {
+		var source = raw.args[1].split(" ")[2].trim();
+		var target = raw.args[1].split(" ")[3].trim();
+		var removed = 0;
+		bot.features.pipes.forEach( function(pipe, index) {
+			if( pipe.src == source && pipe.targ == target ) {
+				bot.features.pipes.splice(index,1); removed++;
+			}
 		});
-	});
-	
+		var plural = removed > 1? "s": "";
+		if( removed > 0 ) bot.say(raw.args[0], "Found "+removed+" occurence"+plural+". Pipe has been dismantled.");
+		if( removed == 0 ) bot.say(raw.args[0], bot.color("light_red", "Did not found any pipe with such configuration."));
+	}	
 }

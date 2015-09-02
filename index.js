@@ -86,6 +86,9 @@ var bot = new irc.Client(serv, nick, {
 	floodProtectionDelay: 350
 });
 
+bot.features = {}; // Reserved spaces for modules.
+bot.color = irc.colors.wrap;
+
 try {
 	var configuration = JSON.parse(fs.readFileSync(exec).toString());
 	if( (configuration.messageListeners == undefined) && (configuration.customListeners == undefined) ) { throw Error("No listeners given."); }
