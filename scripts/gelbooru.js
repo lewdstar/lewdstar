@@ -14,7 +14,7 @@ if( input.regex[0].indexOf(' help') !== -1  ) {
 
 
 	var tags = ["shota"];
-	var rejs = [];
+	var rejs = ["fem", "girl", "trap"];
 	var score_thres = 0;
 	var count = 0;
 	var offset =0;
