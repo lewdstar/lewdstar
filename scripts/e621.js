@@ -35,7 +35,7 @@ if ( !(extra.bot.features.furHistory instanceof Array)  ) extra.bot.features.fur
 		//Fill rejections
 		if( input.regex[3] ) {
 			//organic
-			if( input.regex[3].trim().split(",").indexOf("organic") ) {
+			if( input.regex[3].trim().split(",").indexOf("organic") !== -1 ) {
 				rejs = [];
 				if ( tags[0] == "inazuma eleven" ) tags.shift();
 			}
