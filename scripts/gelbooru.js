@@ -33,12 +33,14 @@ if ( !(extra.bot.features.gelbooruHistory instanceof Array)  ) extra.bot.feature
 			tags.push("inazuma eleven");
 		}
 		//Fill rejections
-		if( input.regex[3].trim().split(",").indexOf("organic") ) {
-			rejs = [];
-			if ( tags[0] == "inazuma eleven" ) tags.shift();
-		}
 
 		if( input.regex[3] ) {
+			//organic
+			if( input.regex[3].trim().split(",").indexOf("organic") ) {
+				rejs = [];
+				if ( tags[0] == "inazuma eleven" ) tags.shift();
+			}
+
 			for ( var i=0; i < input.regex[3].trim().split(',').length; i++ ) {
 				rejs.push( input.regex[3].trim().split(',')[i].trim() );
 			}
