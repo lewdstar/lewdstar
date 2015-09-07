@@ -103,13 +103,13 @@ if ( !(extra.bot.features.furHistory instanceof Array)  ) extra.bot.features.fur
 						return post.getAttribute("tags").indexOf(rej) !== -1;
 					});
 
-					var isViewed = ( extra.bot.features.furHistory.indexOf(post.getAttribute("file_url")) !== -1 );
+					var isViewed = ( extra.bot.features.furHistory.indexOf(post.getAttribute("file_url").substr(-10)) !== -1 );
 
 					if( parseInt(post.getAttribute("score")) < score_thres || isReject || isViewed) {
 						getPic();
 					} else {
 						out(post.getAttribute("file_url") +" <Source: "+ post.getAttribute("source")+"> "+count+" results. Viewed " + extra.bot.features.furHistory.length + "pics." );
-						extra.bot.features.furHistory.push(post.getAttribute("file_url"));
+						extra.bot.features.furHistory.push(post.getAttribute("file_url").substr(-10));
 					}
 				});
 		}).on('error', function(e) {

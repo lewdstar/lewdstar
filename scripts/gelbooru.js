@@ -102,14 +102,14 @@ if ( !(extra.bot.features.gelbooruHistory instanceof Array)  ) extra.bot.feature
 					var isReject =	rejs.some(function(rej){
 						return post.getAttribute("tags").indexOf(rej) !== -1;
 					});
-					var isViewed = ( extra.bot.features.gelbooruHistory.indexOf(post.getAttribute("file_url")) !== -1 );
+					var isViewed = ( extra.bot.features.gelbooruHistory.indexOf(post.getAttribute("file_url").substr(-10)) !== -1 );
 
 					if( parseInt(post.getAttribute("score")) < score_thres || isReject || isViewed ) {
 						if( isViewed ) console.log("Have seen this image.");
 						getPic();
 					} else {
-						out(post.getAttribute("file_url") +" <Source: "+ post.getAttribute("source")+"> "+count+" results. Viewd "+extra.bot.features.gelbooruHistory.length+" pics." );
-						extra.bot.features.gelbooruHistory.push(post.getAttribute("file_url"));
+						out(post.getAttribute("file_url") +" <Source: "+ post.getAttribute("source")+"> "+count+" results. Viewed "+extra.bot.features.gelbooruHistory.length+" pics." );
+						extra.bot.features.gelbooruHistory.push(post.getAttribute("file_url").substr(-10));
 					}
 				});
 		}).on('error', function(e) {
