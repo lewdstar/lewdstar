@@ -33,6 +33,11 @@ if ( !(extra.bot.features.furHistory instanceof Array)  ) extra.bot.features.fur
 			tags.push("inazuma eleven");
 		}
 		//Fill rejections
+		if( input.regex[3].trim().split(",").indexOf("organic") ) {
+			rejs = [];
+			if ( tags[0] == "inazuma eleven" ) tags.shift();
+		}
+		
 		if( input.regex[3] ) {
 			for ( var i=0; i < input.regex[3].trim().split(',').length; i++ ) {
 				rejs.push( input.regex[3].trim().split(',')[i].trim() );
@@ -111,7 +116,7 @@ if ( !(extra.bot.features.furHistory instanceof Array)  ) extra.bot.features.fur
 						extra.bot.features.furHistory.push(post.getAttribute("file_url").substr(-10));
 						out(post.getAttribute("file_url") +" <Source: "+ post.getAttribute("source")+"> "+count+" results. Viewed " + extra.bot.features.furHistory.length + "pics." );
 					}
-					
+
 				});
 		}).on('error', function(e) {
 			console.log(e);

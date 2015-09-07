@@ -112,9 +112,9 @@ bot.addListener('registered', function(msg) {
 	//NS
 	console.log("-   " + color("Authing: ", "cyan_bg") + "NickServ");
 	(function auth(k) { 
-			bot.send ("NICK", nick);
 			if (bot.nick == nick && configuration.config.register.bool !== true) return;
 			bot.say("NickServ","GHOST "+ configuration.config.register.username +" "+ configuration.config.register.password);
+			bot.send ("NICK", nick);
 			bot.say("NickServ","IDENTIFY " + configuration.config.register.password );
 		//setTimeout(auth, 3000);
 	})(1);
