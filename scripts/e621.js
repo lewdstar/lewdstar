@@ -13,6 +13,9 @@ if( input.regex[0].indexOf(' help') !== -1  ) {
 }
 
 
+//History Initiation
+if ( !(extra.bot.features.furHistory instanceof Array)  ) extra.bot.features.furHistory = []; 
+
 	var tags = [];
 	var rejs = [];
 	var score_thres = 0;
@@ -77,7 +80,7 @@ if( input.regex[0].indexOf(' help') !== -1  ) {
 	}
 
 	var getPic = function() {
-		if ( offset > count  || offset > 20)  { out("I tried to look f-fur-pr0n, I failed. (20 rounds)"); return; }
+		if ( offset > count  || offset > 24)  { out("I tried to look f-fur-pr0n, I failed. (25 rounds) (or you have seen all imgs w DEEZ TAGS)"); return; }
 
 		var response = "";
 		
@@ -98,12 +101,15 @@ if( input.regex[0].indexOf(' help') !== -1  ) {
 
 					var isReject =	rejs.some(function(rej){
 						return post.getAttribute("tags").indexOf(rej) !== -1;
-					})
+					});
 
-					if( parseInt(post.getAttribute("score")) < score_thres || isReject ) {
+					var isViewed = ( extra.bot.features.furHistory.indexOf(post.getAttribute("file_url")) !== -1 );
+
+					if( parseInt(post.getAttribute("score")) < score_thres || isReject || isViewed) {
 						getPic();
 					} else {
 						out(post.getAttribute("file_url") +" <Source: "+ post.getAttribute("source")+"> "+count+" results." );
+						extra.bot.features.furHistory.push(post.getAttribute("file_url"));
 					}
 				});
 		}).on('error', function(e) {

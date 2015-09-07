@@ -3,7 +3,7 @@
 var http = require('http');
 var DOMParser = require('xmldom').DOMParser;
 
-module.exports = function(input, out) {
+module.exports = function(input, out, extra) {
 
 //Schbot Help
 if( input.regex[0].indexOf(' help') !== -1  ) {  
@@ -11,6 +11,9 @@ if( input.regex[0].indexOf(' help') !== -1  ) {
 	out("      Example: !cum: vocaloid, kagamine len | 1girl, socks | 20", true);
 	return;
 }
+
+//History Initiation
+if ( !(extra.bot.features.gelbooruHistory instanceof Array)  ) extra.bot.features.gelbooruHistory = []; 
 
 
 	var tags = ["shota"];
@@ -81,7 +84,7 @@ if( input.regex[0].indexOf(' help') !== -1  ) {
 	}
 
 	var getPic = function() {
-		if ( offset > count  || offset > 20)  { out("No pic matches your criteria. (20 rounds of search)"); return; }
+		if ( offset > count  || offset > 20)  { out("No pic matches your criteria. (20 rounds of search) (Or you've viewed all imgs in this tag) "); return; }
 
 		var response = "";
 		
@@ -98,12 +101,15 @@ if( input.regex[0].indexOf(' help') !== -1  ) {
 
 					var isReject =	rejs.some(function(rej){
 						return post.getAttribute("tags").indexOf(rej) !== -1;
-					})
+					});
+					var isViewed = ( extra.bot.features.gelbooruHistory.indexOf(post.getAttribute("file_url")) !== -1 );
 
-					if( parseInt(post.getAttribute("score")) < score_thres || isReject ) {
+					if( parseInt(post.getAttribute("score")) < score_thres || isReject || isViewed ) {
+						if( isViewed ) console.log("Have seen this image.");
 						getPic();
 					} else {
 						out(post.getAttribute("file_url") +" <Source: "+ post.getAttribute("source")+"> "+count+" results." );
+						extra.bot.features.gelbooruHistory.push(post.getAttribute("file_url"));
 					}
 				});
 		}).on('error', function(e) {

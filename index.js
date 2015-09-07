@@ -113,7 +113,7 @@ bot.addListener('registered', function(msg) {
 	console.log("-   " + color("Authing: ", "cyan_bg") + "NickServ");
 	(function auth(k) { 
 			bot.send ("NICK", nick);
-			if (bot.nick == nick && k !== 1 && configuration.config.register.bool !== true) return;
+			if (bot.nick == nick && configuration.config.register.bool !== true) return;
 			bot.say("NickServ","GHOST "+ configuration.config.register.username +" "+ configuration.config.register.password);
 			bot.say("NickServ","IDENTIFY " + configuration.config.register.password );
 		//setTimeout(auth, 3000);
@@ -187,7 +187,7 @@ function initMessageListeners(callback) {
 				var extra = 
 					{
 						from: channel,
-						client: bot
+						bot: bot
 					};
 
 				if( (new RegExp(listener.regex)).test(message) ) {
