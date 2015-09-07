@@ -115,7 +115,7 @@ if ( !(extra.bot.features.furHistory instanceof Array)  ) extra.bot.features.fur
 						getPic();
 					} else {
 						extra.bot.features.furHistory.push(post.getAttribute("file_url").substr(-10));
-						out(post.getAttribute("file_url") +" <Source: "+ post.getAttribute("source")+"> "+count+" results. Viewed " + extra.bot.features.furHistory.length + "pics." );
+						out(post.getAttribute("file_url") +" <Source: "+ post.getAttribute("source")+"> "+count+" results. Viewed " + extra.bot.features.furHistory.length + " pics." );
 					}
 
 				});
