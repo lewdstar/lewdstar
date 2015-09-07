@@ -3,7 +3,7 @@
 var http = require('https');
 var DOMParser = require('xmldom').DOMParser;
 
-module.exports = function(input, out) {
+module.exports = function(input, out, extra) {
 
 //Schbot Help
 if( input.regex[0].indexOf(' help') !== -1  ) {  
