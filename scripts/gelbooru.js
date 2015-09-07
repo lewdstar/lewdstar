@@ -108,7 +108,7 @@ if ( !(extra.bot.features.gelbooruHistory instanceof Array)  ) extra.bot.feature
 						if( isViewed ) console.log("Have seen this image.");
 						getPic();
 					} else {
-						out(post.getAttribute("file_url") +" <Source: "+ post.getAttribute("source")+"> "+count+" results." );
+						out(post.getAttribute("file_url") +" <Source: "+ post.getAttribute("source")+"> "+count+" results. Viewd "+extra.bot.features.gelbooruHistory.length+" pics." );
 						extra.bot.features.gelbooruHistory.push(post.getAttribute("file_url"));
 					}
 				});
