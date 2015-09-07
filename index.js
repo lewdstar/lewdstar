@@ -157,7 +157,7 @@ function initMessageListeners(callback) {
 				var extra = 
 					{
 						from: from,
-						client: bot
+						bot: bot
 					};
 
 				if( (new RegExp(listener.regex)).test(message) ) {
