@@ -9,7 +9,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo test failed or passed && exit 0"
   },
   "keywords": [
     "irc"
@@ -18,10 +18,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/potasmic/schbot.git"
+    "url": "https://github.com/ptskh/schbot.git"
   },
   "bugs": {
-    "url": "https://github.com/potasmic/schbot/issues"
+    "url": "https://github.com/ptskh/schbot/issues"
   },
-  "homepage": "https://github.com/potasmic/schbot"
+  "homepage": "https://github.com/ptskh/schbot"
 }
