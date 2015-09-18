@@ -60,7 +60,7 @@ module.exports = function( inp, out, extra) {
 				});
 
 				try {
-					out(links[0].replace(/\:small/ig,''));
+					out(links[0].replace(/\:small/ig,':large'));
 				} catch(e) {
 					out('Error:' + e.message);
 				}
