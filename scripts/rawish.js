@@ -5,14 +5,14 @@ module.exports = function(input, chans, bot) {
 	var admins = ["shotacat","aspect", "TRG", "Kiggy", "uid24615", "Kenpari", "Jamie", "DJTweak"];
 
 	//le krill
-	if( raw.command == "PRIVMSG" && raw.args[1] == "$ kill "+ bot.nick && admins.indexOf(raw.user) !== -1 ) {
+	if( raw.command == "PRIVMSG" && raw.args[1].trim() == "$ kill "+ bot.nick && admins.indexOf(raw.user) !== -1 ) {
 		bot.disconnect("Kill requested by " + raw.user, function() {
 			process.exit("bye");
 		})
 	}
 
 	//le part
-	if( raw.command == "PRIVMSG" && raw.args[1] == "$ part "+ bot.nick && admins.indexOf(raw.user) !== -1 ) {
+	if( raw.command == "PRIVMSG" && raw.args[1].trim() == "$ part "+ bot.nick && admins.indexOf(raw.user) !== -1 ) {
 		bot.part(raw.args[0],"Parting requested by " + raw.user);
 	}
 
