@@ -36,13 +36,14 @@ module.exports = function(input, chans, bot) {
 		var source = raw.args[1].split(" ")[2].trim();
 		var target = raw.args[1].split(" ")[3].trim();
 
-		if(source == bot.nick || target == bot.nick) { bot.say(raw.args[0], bot.color("dark_red", "Please don't.")); return; }
+		if(source == bot.nick || target == bot.nick) { bot.say(raw.args[0], "Please don't."); return; }
 		bot.features.pipes.push( {src: source, targ: target} );
 		bot.say(raw.args[0], "Pipe initiated from: " +  source + " --> " + target);
 
 		//--- New Channel listener or nah?
 		if( bot.features.pipes.length === 1 && bot.features.pipesEnabled !== true ) { bot.features.pipesEnabled = true;
 			bot.addListener("raw", function(rawmsg) {
+				if( rawmsg.command !== "PRIVMSG" ) return;
 				bot.features.pipes.forEach( function(pipe) { 
 					if( rawmsg.args[1].substr(0,1) == "$" || rawmsg.command !== "PRIVMSG" ) return;
 					if( pipe.src == rawmsg.args[0] ) bot.say( pipe.targ,  rawmsg.args[1]);

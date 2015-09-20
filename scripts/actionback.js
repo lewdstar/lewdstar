@@ -3,7 +3,7 @@
 module.exports = function(input, channels, bot) {
 	//              1    2   3   4
 	//input --> { from, to, text, raw }
-	console.log(input);
+	//console.log(input);
 	var recog = /([a-zA-Z0-9\s]+)\s((f|F)uccboi)([\'a-zA-Z0-9\s]*)/; 
 
 	if( recog.test(input[2]) && channels.indexOf(input[1]) !== -1  ) {
