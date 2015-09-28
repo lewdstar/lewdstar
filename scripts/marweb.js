@@ -26,8 +26,9 @@ module.exports = function(input, out) {
 				} catch(e) {
 					out('whoops ' + e);
 				}
-
+				
 				if( pr[0] ) {
+
 					var defs = "";
 
 					forEach(def, function(de, index) { 
