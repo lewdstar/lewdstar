@@ -15,7 +15,7 @@ module.exports = function(input, out, extra) {
 			out("fur : same syntax as above for e621", true);
 			out("gal: returns a random image from the Shotachan Gallery", true);
 			out("define [text] : Fetch definition of a word from UrbanDictionary. ", true);
-			out("d [text] : Fetch definition of a word from Marriam-Webster. ", true);
+			out("d [text] : Fetch definition of a word from Merriam-Webster Dictionary. ", true);
 			out("wiki [text] : Fetch summary of Wikipedia article if found. " , true);
 			out("source: Returns link to GitHub Repository of this bot.", true);
 			out("help: Shows this help message.", true);
