@@ -57,7 +57,7 @@
 		{
 			"script" : "./scripts/omdb",
 			"channels": ["#debug", "#shota", "#maths"],
-			"regex": "^!imdb\\s+([a-zA-Z0-9]*)",
+			"regex": "^!imdb\\s+([a-zA-Z0-9 ]*)",
 			"private": true
 		}
 	],
