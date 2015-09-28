@@ -53,6 +53,12 @@
 			"channels": ["#debug", "#shota", "#maths"],
 			"regex": "^!d\\s+([a-zA-Z]*)",
 			"private": true
+		},
+		{
+			"script" : "./scripts/omdb",
+			"channels": ["#debug", "#shota", "#maths"],
+			"regex": "^!imdb\\s+([a-zA-Z0-9]*)",
+			"private": true
 		}
 	],
 	"customListeners": [
