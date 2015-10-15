@@ -72,6 +72,8 @@ if ( !(extra.bot.features.gelbooruHistory instanceof Array)  ) extra.bot.feature
 					var reason = doc.getElementsByTagName("response")[0].getAttribute("reason") 
 					if ( reason !== undefined ) out("Gelbooru says: "+reason);
 					return;
+				} catch(e) {
+					out("Really weird error happened. Go to http://gelbooru.com/index.php?page=dapi&s=post&q=index&limit=0&tags="+validizeTags(tags)+ " and see what they say.");
 				}
 
 				if( count > 0 ) {
