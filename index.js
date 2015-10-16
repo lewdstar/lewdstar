@@ -74,7 +74,7 @@ if ( process.argv.indexOf('-h') !== -1 ) {
 }
 
 var bot = new irc.Client(serv, nick, {
-	realName: "Savid Euneva",
+	realName: "Omnia Nepeta Cataria",
 	userName: "Fuccboi",
 	autoConnect: true,
 	port: port,
