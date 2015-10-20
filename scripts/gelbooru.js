@@ -4,7 +4,7 @@ var http = require('http');
 var DOMParser = require('xmldom').DOMParser;
 
 module.exports = function(input, out, extra) {
-	out("Gelbooru API is unavailable until further notice. Sorry."); return;
+	out("We are working on updating the Gelbooru API to prevent future abuse. It will be some time until this happens though due to lozertuser wanting it to be compatible with 0.3's application of access keys. Just waiting on Geltas to commit his working version to the SVN."); return;
 //Schbot Help
 if( input.regex[0].indexOf(' help') !== -1  ) {  
 	out("--Gelbooru: !cum: tags, to, search | tag, to, filter | scores over", true);
