@@ -1,10 +1,11 @@
 // ^!cum\:?([\w,\s()-+]*)(\|([\w,\s()]*)\|?(\-?[0-9]+)?)?
 
+var qs = require('querystring');
 var http = require('http');
 var DOMParser = require('xmldom').DOMParser;
 
 module.exports = function(input, out, extra) {
-	
+
 //Schbot Help
 if( input.regex[0].indexOf(' help') !== -1  ) {  
 	out("--Gelbooru: !cum: tags, to, search | tag, to, filter | scores over", true);
@@ -16,6 +17,7 @@ if( input.regex[0].indexOf(' help') !== -1  ) {
 if ( !(extra.bot.features.gelbooruHistory instanceof Array)  ) extra.bot.features.gelbooruHistory = []; 
 
 
+
 	var tags = ["shota"];
 	var rejs = ["fem", "girl", "trap"];
 	var score_thres = 0;
@@ -23,7 +25,7 @@ if ( !(extra.bot.features.gelbooruHistory instanceof Array)  ) extra.bot.feature
 	var offset =0;
 	var out = out;
 	
-	var main = function() {
+	var main = function() { 
 		//Fill tags
 		for ( var i=0; i < input.regex[1].trim().split(',').length; i++ ) {
 			tags.push( input.regex[1].trim().split(',')[i].trim() );
@@ -47,21 +49,23 @@ if ( !(extra.bot.features.gelbooruHistory instanceof Array)  ) extra.bot.feature
 		}
 		//Score threshold
 		score_thres = input.regex[4] || 0;
-	
-		console.log("Searching for: ", tags.join(", "));
-		console.log("Rejecting: ", rejs.join(", "));
-		console.log("Score over: ", score_thres);
 
 		getCount(tags);
 	}
 
 	var getCount = function(tags) {
 		var response = "";
-		var req = http.get("http://gelbooru.com/index.php?page=dapi&s=post&q=index&limit=0&tags="+validizeTags(tags), function(res) {
+
+
+		var req = http.get({
+			host: "gelbooru.com",
+			headers: { Cookie: extra.bot.features.gelbooruCookie },
+			path: "/index.php?page=dapi&s=post&q=index&limit=0&tags="+validizeTags(tags)
+		}, function(res) {
 			res.on('data', function(data) {
 				response += data;
 			});
-			res.on('end', function() {
+			res.on('end', function() { 
 				var parser = new DOMParser();
 				var doc    = parser.parseFromString(response,"application/xml");
 
@@ -97,7 +101,11 @@ if ( !(extra.bot.features.gelbooruHistory instanceof Array)  ) extra.bot.feature
 
 		var response = "";
 		
-		var req = http.get("http://gelbooru.com/index.php?page=dapi&s=post&q=index&limit=1&pid="+Math.floor(Math.random()*count)+"&tags="+validizeTags(tags), 
+		var req = http.get({
+			host: "gelbooru.com",
+			headers: { Cookie: extra.bot.features.gelbooruCookie },
+			path: "/index.php?page=dapi&s=post&q=index&limit=1&pid="+Math.floor(Math.random()*count)+"&tags="+validizeTags(tags)
+		}, 
 			function(res) {
 				res.on('data', function(data) {
 					response += data;
@@ -135,7 +143,29 @@ if ( !(extra.bot.features.gelbooruHistory instanceof Array)  ) extra.bot.feature
 		console.log("Searched ",offset,"of ",count);
 	}
 
-	main();
+
+//Logs in
+	if ( extra.bot.features.gelbooruCookie == null ) { console.log("Logging in...");
+			var req = http.request({
+				host: 'gelbooru.com',
+				path: '/index.php?page=account&s=login&code=00',
+				port: 80,
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded',
+	          		'Content-Length': 'user=ptskh&pass=shotachan&submit=1'.length
+				}
+			}, function(rep) { 
+				extra.bot.features.gelbooruCookie = rep.headers['set-cookie'].join(';') ;
+				main();
+			}).on('error', function(e) { console.log(e); out(e.message); });
+
+			req.write('user=ptskh&pass=shotachan&submit=1');
+			req.end();
+	} else { 
+		main();
+	}
+
 }
 
 
