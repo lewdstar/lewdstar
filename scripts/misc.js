@@ -44,4 +44,7 @@ module.exports = function(input, out, extra) {
 			out("String I received: "+spec);
 		}
 	}
+	else if( what =="hansen" ) {
+		out("http://ih0.redbubble.net/image.74198864.0413/flat,1000x1000,075,f.jpg");
+	}
 }
