@@ -20,7 +20,7 @@
 		},
 		{
 			"script": "./scripts/wiki",
-			"channels": ["#debug", "#shota", "#maths"],
+			"channels": ["#debug", "#shota", "#maths", "#imgurians-tech"],
 			"regex": "^!wiki\\s+(.+)",
 			"private": true
 		},

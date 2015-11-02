@@ -1,4 +1,4 @@
-// ^!fur\:?([\w,\s()-+]*)(\|([\w,\s()]*)\|?(\-?[0-9]+)?)?
+// ^!fur\:?([\w,.:\s()-+]*)(\|([\w,\s()]*)\|?(\-?[0-9]+)?)?
 
 var http = require('https');
 var DOMParser = require('xmldom').DOMParser;

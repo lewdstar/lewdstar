@@ -1,4 +1,4 @@
-// ^!cum\:?([\w,\s()-+]*)(\|([\w,\s()]*)\|?(\-?[0-9]+)?)?
+// ^!cum\:?([\w,.:\s()-+]*)(\|([\w,\s()]*)\|?(\-?[0-9]+)?)?
 
 var qs = require('querystring');
 var http = require('http');
