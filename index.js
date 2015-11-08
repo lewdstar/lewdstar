@@ -109,7 +109,7 @@ bot.addListener('error', function(e) {
 
 //Connected
 bot.addListener('registered', function(msg) {
-	//NS
+	/** NS
 	console.log("-   " + color("Authing: ", "cyan_bg") + "NickServ");
 
 	if ( configuration.config.register.bool == true ) {
@@ -119,7 +119,7 @@ bot.addListener('registered', function(msg) {
 		bot.send ("NICK", nick);
 		bot.say("NickServ","IDENTIFY " + configuration.config.register.password );
 	}
-	//join channels and listen
+	**/
 	initMessageListeners();
 });
 
