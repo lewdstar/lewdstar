@@ -2,7 +2,7 @@
 
 module.exports = function(input, chans, bot) {
 	var raw = input[0];
-	var admins = ["shotacat","aspect", "TRG", "Kiggy", "uid24615", "Kenpari", "Jamie", "DJTweak","shadowkun_"];
+	var admins = ["shotacat","aspect", "TRG", "Kiggy", "uid24615", "Kenpari", "Jamie", "DJTweak","shadoukun_"];
 
 	//le krill
 	if( raw.command == "PRIVMSG" && raw.args[1].trim() == "$ kill "+ bot.nick && admins.indexOf(raw.user) !== -1 ) {
