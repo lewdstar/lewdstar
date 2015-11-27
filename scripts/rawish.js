@@ -2,13 +2,19 @@
 
 module.exports = function(input, chans, bot) {
 	var raw = input[0];
-	var admins = ["shotacat","aspect", "TRG", "Kiggy", "uid24615", "Kenpari", "Jamie", "DJTweak","shadoukun_"];
+	var admins = ["shotacat","aspect", "TRG", "Kiggy", "uid24615", "Kenpari", "sid115038", "DJTweak","shadoukun_"];
 
 	//le krill
 	if( raw.command == "PRIVMSG" && raw.args[1].trim() == "$ kill "+ bot.nick && admins.indexOf(raw.user) !== -1 ) {
 		bot.disconnect("Kill requested by " + raw.user, function() {
 			process.exit("bye");
 		})
+	}
+
+	//le auth
+	if( raw.command == "PRIVMSG" && raw.args[1].trim() == "$ auth" && admins.indexOf(raw.user) !== -1 ) {
+		bot.send ("NICK", nick);
+		bot.say("NickServ","IDENTIFY " + configuration.config.register.password );
 	}
 
 	//le part
