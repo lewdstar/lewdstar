@@ -12,8 +12,9 @@ module.exports = function(input, chans, bot) {
 	}
 
 	//le auth
-	if( raw.command == "PRIVMSG" && raw.args[1].trim() == "$ auth" && admins.indexOf(raw.user) !== -1 ) {
-		bot.send ("NICK", bot.nick);
+	if( raw.command == "PRIVMSG" && raw.args[1].trim() == "$ auth" && admins.indexOf(raw.user) !== -1 ) { 
+		bot.say("NickServ","GHOST "+ bot.features.config.config.register.username +" "+ bot.features.config.config.register.password);
+		bot.send("NICK", bot.nick);
 		bot.say("NickServ","IDENTIFY " + bot.features.config.config.register.password );
 	}
 
