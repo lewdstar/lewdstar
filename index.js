@@ -91,6 +91,7 @@ bot.color = irc.colors.wrap;
 
 try {
 	var configuration = JSON.parse(fs.readFileSync(exec).toString());
+	bot.features.config = configuration;
 	if( (configuration.messageListeners == undefined) && (configuration.customListeners == undefined) ) { throw Error("No listeners given."); }
 	if( !(configuration.config.negations instanceof Array) ) { throw Error("Negation list is not an array. You can leave it blank, FYI."); }
 	if( !(configuration.config.quitMessage instanceof Array) ) { throw Error("No Quit message? You can leave it black, FYI."); }
