@@ -127,6 +127,7 @@ bot.addListener('registered', function(msg) {
 var joinedChannels = [];
 
 function initMessageListeners(callback) {
+	bot.setMaxListeners(100);
 	//Join channels
 	configuration.messageListeners.forEach( function(listener) {
 		if( listener.channels.length > 0 ) {
