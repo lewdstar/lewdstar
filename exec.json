@@ -13,6 +13,12 @@
 			"private": true
 		},
 		{
+			"script" : "./scripts/stc",
+			"channels": ["#debug", "#shota"],
+			"regex": "^!s\\:?([\\w,.:\\s()-+]*)(\\|([\\w,\\s()]*)\\|?(\\-?[0-9]+)?)?",
+			"private": true
+		},
+		{
 			"script" : "./scripts/urban",
 			"channels": ["#debug", "#shota"],
 			"regex": "^!define[\\:\\s]?(.*)",
