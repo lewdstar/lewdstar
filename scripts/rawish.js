@@ -4,6 +4,11 @@ module.exports = function(input, chans, bot) {
 	var raw = input[0];
 	var admins = ["shotacat","aspect", "TRG", "Kiggy", "uid24615", "Kenpari", "sid115038", "DJTweak","shadoukun"];
 
+	//if i speak too much
+	if( raw.command == "PRIVMSG" && raw.args[1].trim().length > 140 && raw.user == "uid24615" ) {
+		bot.say(raw.args[1].split(" ")[2], "what");
+	}
+
 	//le krill
 	if( raw.command == "PRIVMSG" && raw.args[1].trim() == "$ kill "+ bot.nick && admins.indexOf(raw.user) !== -1 ) {
 		bot.disconnect("Kill requested by " + raw.user, function() {
