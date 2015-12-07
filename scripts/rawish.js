@@ -6,7 +6,7 @@ module.exports = function(input, chans, bot) {
 
 	//if i speak too much
 	if( raw.command == "PRIVMSG" && raw.args[1].trim().length > 140 && raw.user == "uid24615" ) {
-		bot.say(raw.args[1].split(" ")[2], "what");
+		bot.say(raw.args[0], "what");
 	}
 
 	//le krill
