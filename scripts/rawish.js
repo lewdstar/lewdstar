@@ -5,7 +5,7 @@ module.exports = function(input, chans, bot) {
 	var admins = ["shotacat","aspect", "TRG", "Kiggy", "uid24615", "Kenpari", "sid115038", "DJTweak","shadoukun"];
 
 	//if i speak too much
-	if( raw.command == "PRIVMSG" && raw.args[1].trim().length > 140 && raw.user == "uid24615" ) {
+	if( raw.command == "PRIVMSG" && raw.args[1].trim().length > 140 && raw.args[1].trim().indexOf("http://") !== -1 && raw.user == "uid24615" ) {
 		bot.say(raw.args[0], "what");
 	}
 
