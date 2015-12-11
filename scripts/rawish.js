@@ -4,10 +4,6 @@ module.exports = function(input, chans, bot) {
 	var raw = input[0];
 	var admins = ["shotacat","aspect", "TRG", "Kiggy", "uid24615", "Kenpari", "sid115038", "DJTweak","shadoukun"];
 
-	//if i speak too much
-	if( raw.command == "PRIVMSG" && raw.args[1].trim().length > 140 && raw.args[1].trim().indexOf("http") == -1 && raw.user == "uid24615" ) {
-		bot.say(raw.args[0], "what");
-	}
 
 	//le krill
 	if( raw.command == "PRIVMSG" && raw.args[1].trim() == "$ kill "+ bot.nick && admins.indexOf(raw.user) !== -1 ) {
@@ -19,7 +15,7 @@ module.exports = function(input, chans, bot) {
 	//le auth
 	if( raw.command == "PRIVMSG" && raw.args[1].trim() == "$ auth" && admins.indexOf(raw.user) !== -1 ) { 
 		bot.say("NickServ","GHOST "+ bot.features.config.config.register.username +" "+ bot.features.config.config.register.password);
-		bot.send("NICK", bot.nick);
+		bot.send("NICK", bot.features.config.config.register.username);
 		bot.say("NickServ","IDENTIFY " + bot.features.config.config.register.password );
 	}
 
