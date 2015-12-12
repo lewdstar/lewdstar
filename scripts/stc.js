@@ -76,7 +76,7 @@ if ( !(extra.bot.features.stcHistory instanceof Array)  ) extra.bot.features.stc
 				if( count > 0 ) {
 					getPic(count);
 				} else {
-					out("No Yiffing!");
+					out("No Shota!");
 				}
 			});
 		}).on('error', function(e){
@@ -86,7 +86,7 @@ if ( !(extra.bot.features.stcHistory instanceof Array)  ) extra.bot.features.stc
 	}
 
 	var getPic = function() {
-		if ( offset > count  || offset > 24)  { out("I tried to look f-fur-pr0n, I failed. (25 rounds) (or you have seen all imgs w DEEZ TAGS)"); return; }
+		if ( offset > count  || offset > 24)  { out("I failed. (25 rounds) (or you have seen all imgs of this tag)"); return; }
 
 		var response = "";
 		
@@ -115,7 +115,7 @@ if ( !(extra.bot.features.stcHistory instanceof Array)  ) extra.bot.features.stc
 						getPic();
 					} else {
 						extra.bot.features.stcHistory.push(post.getAttribute("file_url").substr(-10));
-						out(post.getAttribute("file_url") +" <Source: "+ post.getAttribute("source")+"> "+count+" results. Viewed " + extra.bot.features.stcHistory.length + " pics." );
+						out(post.getAttribute("file_url") +" <Source: "+ post.getAttribute("source")+" > "+count+" results. Viewed " + extra.bot.features.stcHistory.length + " pics." );
 					}
 
 				});
