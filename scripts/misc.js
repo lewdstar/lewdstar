@@ -42,7 +42,7 @@ module.exports = function(input, out, extra) {
 
 	}
 	else if ( what == "throw" ) {
-		extra.bot.disconnect("Someone Threw an Error");
+		extra.bot.disconnect("Someone Threw an Error", test);
 		throw new Error("thre an rror");
 	}
 	else if ( what == "choose") {
