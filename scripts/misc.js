@@ -41,6 +41,9 @@ module.exports = function(input, out, extra) {
 		out(key);
 
 	}
+	else if ( what = "throw" ) {
+		extra.bot.disconnect("Someone Threw an Error");
+	}
 	else if ( what == "choose") {
 		if ( spec == "" ) {
 			out("Nothing to choose from. Can I choose you?");
