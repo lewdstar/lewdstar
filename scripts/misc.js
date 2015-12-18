@@ -41,7 +41,7 @@ module.exports = function(input, out, extra) {
 		out(key);
 
 	}
-	else if ( what = "throw" ) {
+	else if ( what == "throw" ) {
 		extra.bot.disconnect("Someone Threw an Error");
 	}
 	else if ( what == "choose") {
