@@ -30,6 +30,17 @@ module.exports = function(input, out, extra) {
 		spec = (spec == "")? 100 : spec;
 		out( Math.round( 1 + (Math.random() * (parseInt(spec)-1) )  ));
 	}
+	else if ( what == "genkey") {
+		var params = spec.split(" ");
+		var chars = (params.indexOf("-t") !== -1)? params[params.indexOf("-t")+1] : "abcdefghijklmnopqrstuvwyxz0123456789!#$%&_-+`~";
+		var len = (params.indexOf("-l") !== -1)? params[params.indexOf("-l")+1] : 32;
+		var key = "";
+		for ( var i = 0; i < len; i ++) {
+			key += chars.substr(Math.floor(Math.random()*chars.length),1);
+		}
+		out(key);
+
+	}
 	else if ( what == "choose") {
 		if ( spec == "" ) {
 			out("Nothing to choose from. Can I choose you?");
