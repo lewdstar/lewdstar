@@ -32,7 +32,7 @@ module.exports = function(input, out, extra) {
 	}
 	else if ( what == "genkey") {
 		var params = spec.split(" ");
-		var chars = (params.indexOf("-t") !== -1)? params[params.indexOf("-t")+1] : "abcdefghijklmnopqrstuvwyxz0123456789!#$%&_-+`~";
+		var chars = (params.indexOf("-t") !== -1)? params[params.indexOf("-t")+1] : "abcdefghijklmnopqrstuvwyxzABCDEFGHIJKLMNOPQRSTUVWYXZ0123456789!#$%&_-+`~";
 		var len = (params.indexOf("-l") !== -1)? params[params.indexOf("-l")+1] : 32;
 		var key = "";
 		for ( var i = 0; i < len; i ++) {
