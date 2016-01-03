@@ -162,7 +162,7 @@ function initMessageListeners(callback) {
 						bot: bot
 					};
 
-				if( (new RegExp(listener.regex)).test(message) ) {
+				if( (new RegExp(listener.regex)).test(message.trim()) ) {
 					processor(input, function(txt) {
 						bot.say(from, txt);
 					}, extra);
@@ -192,7 +192,7 @@ function initMessageListeners(callback) {
 						bot: bot
 					};
 
-				if( (new RegExp(listener.regex)).test(message) ) {
+				if( (new RegExp(listener.regex)).test(message.trim()) )  {
 
 					processor(input, function(txt, pm) {
 						if(!pm) {
