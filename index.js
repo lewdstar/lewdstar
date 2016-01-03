@@ -154,7 +154,7 @@ function initMessageListeners(callback) {
 				var input = 
 					{
 						from: from,
-						regex: (new RegExp(listener.regex)).exec(message)
+						regex: (new RegExp(listener.regex)).exec(message.trim())
 					};
 				var extra = 
 					{
@@ -162,7 +162,7 @@ function initMessageListeners(callback) {
 						bot: bot
 					};
 
-				if( (new RegExp(listener.regex)).test(message.trim()) ) {
+				if( (new RegExp(listener.regex)).test( message.trim() ) ) {
 					processor(input, function(txt) {
 						bot.say(from, txt);
 					}, extra);
@@ -184,7 +184,7 @@ function initMessageListeners(callback) {
 				var input = 
 					{ 
 						from: from,
-					 	regex: (new RegExp(listener.regex)).exec(message)
+					 	regex: (new RegExp(listener.regex)).exec(message.trim() )
 					};
 				var extra = 
 					{
@@ -192,7 +192,7 @@ function initMessageListeners(callback) {
 						bot: bot
 					};
 
-				if( (new RegExp(listener.regex)).test(message.trim()) )  {
+				if( (new RegExp(listener.regex)).test( message.trim() ) ) {
 
 					processor(input, function(txt, pm) {
 						if(!pm) {
