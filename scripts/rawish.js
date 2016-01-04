@@ -3,8 +3,26 @@
 module.exports = function(input, chans, bot) {
 	var raw = input[0];
 	var admins = ["shotacat","aspect", "TRG", "Kiggy", "uid24615", "Kenpari", "sid115038", "DJTweak","shadoukun"];
+	var forbidden = ["pipe", "config"];
 
+	//le flush stuffs
+	if( raw.command == "PRIVMSG" && raw.args[1].substr(0,7) == "$ flush" ) {
+		var what = raw.args[1].split(" ")[2];
+		try {
+			if ( forbidden.indexOf(what) == -1 && bot.features[what] ) {
+				delete bot.features[what];
+				bot.say(raw.args[0], "Flushed storage for " + what);
+			} else {
+				var featureList = Object.keys(bot.features);
 
+				if(forbidden.indexOf(what) !== -1) throw Error("You're trying to flush an internal feature's storage. Please don't.");
+				if(!bot.features[what]) throw Error("Doesn't exist. Existing features: " + featureList);
+			}
+		} catch (e) {
+			bot.say(raw.args[0], "No storage exist for: "+what+". Error message: " + e.message);
+		}
+	}
+	
 	//le krill
 	if( raw.command == "PRIVMSG" && raw.args[1].trim() == "$ kill "+ bot.nick && admins.indexOf(raw.user) !== -1 ) {
 		bot.disconnect("Kill requested by " + raw.user, function() {
