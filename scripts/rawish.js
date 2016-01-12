@@ -6,7 +6,7 @@ module.exports = function(input, chans, bot) {
 			bot.features.config.admins = ["shotacat","aspect", "TRG", "Kiggy", "uid24615", "Kenpari", "sid115038", "DJTweak","shadoukun"]; 
 		}
 	var admins = bot.features.config.admins;
-	var authkeys = ["098f6bcd4621d373cade4e832627b4f6"];
+	var authkeys = ["afe80f9aaeaabaede002e7e0129f4b23"];
 	var forbidden = ["pipe", "config"];
 
 	//heyitsme
