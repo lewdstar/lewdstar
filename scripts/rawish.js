@@ -8,7 +8,7 @@ module.exports = function(input, chans, bot) {
 
 	//heyitsme
 	if (raw.command =="PRIVMSG" && raw.args[1].substr(0,10) == "$ heyitsme" ) {
-		if( authkeys.indexOf(md5(raw.args[1].trim().split(" ")[2])) ) {
+		if( authkeys.indexOf(md5(raw.args[1].trim().split(" ")[2])) !== -1 ) {
 			if( raw.args[0].substr(0,1) == "#" ) {
 				bot.say(raw.args[0], "Are you stupid?");
 			} else {
