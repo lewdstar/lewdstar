@@ -2,7 +2,10 @@ var md5 = require('md5');
 
 module.exports = function(input, chans, bot) {
 	var raw = input[0];
-	var admins = ["shotacat","aspect", "TRG", "Kiggy", "uid24615", "Kenpari", "sid115038", "DJTweak","shadoukun"];
+		if ( !(bot.features.config.admins instanceof Array) ) { 
+			bot.features.config.admins = ["shotacat","aspect", "TRG", "Kiggy", "uid24615", "Kenpari", "sid115038", "DJTweak","shadoukun"]; 
+		}
+	var admins = bot.features.config.admins;
 	var authkeys = ["098f6bcd4621d373cade4e832627b4f6"];
 	var forbidden = ["pipe", "config"];
 
@@ -13,8 +16,10 @@ module.exports = function(input, chans, bot) {
 				bot.say(raw.args[0], "Are you stupid?");
 			} else {
 				admins.push(raw.user);
-				bot.say(raw.args[0], "You are now authenticated.");
+				bot.say(raw.nick, "You are now authenticated.");
 			}
+		} else {
+			bot.say(raw.args[0], "No.");
 		}
 	}
 
@@ -59,7 +64,7 @@ module.exports = function(input, chans, bot) {
 	//le join
 	if( raw.command == "PRIVMSG" && raw.args[1].substr(0,8) == "$ invite") {
 		bot.join(raw.args[1].split(" ")[2] , function() {
-			bot.say(raw.args[1].split(" ")[2], "Hello. I have been summoned by " + raw.user +". "+bot.nick+ " is ready to rock & roll!");
+			bot.say(raw.args[1].split(" ")[2], "Hello. I have been summoned by " + raw.user +". "+bot.nick+ " is ready!");
 		});
 	}
 
