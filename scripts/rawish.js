@@ -24,7 +24,8 @@ module.exports = function(input, chans, bot) {
 	}
 	
 	//le krill
-	if( raw.command == "PRIVMSG" && raw.args[1].trim() == "$ kill "+ bot.nick && admins.indexOf(raw.user) !== -1 ) {
+	if( raw.command == "PRIVMSG" && raw.args[1].trim().substr(0,6) == "$ kill" && admins.indexOf(raw.user) !== -1 ) {
+		if( raw.args[1].trim().split(" ")[2] !== bot.nick ) { bot.say(raw.args[0], "Not me."); return; }
 		bot.disconnect("Kill requested by " + raw.user, function() {
 			process.exit("bye");
 		})
