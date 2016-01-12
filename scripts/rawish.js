@@ -1,9 +1,22 @@
-
+var md5 = require('md5');
 
 module.exports = function(input, chans, bot) {
 	var raw = input[0];
 	var admins = ["shotacat","aspect", "TRG", "Kiggy", "uid24615", "Kenpari", "sid115038", "DJTweak","shadoukun"];
+	var authkeys = ["098f6bcd4621d373cade4e832627b4f6"];
 	var forbidden = ["pipe", "config"];
+
+	//heyitsme
+	if (raw.command =="PRIVMSG" && raw.args[1].substr(0,10) == "$ heyitsme" ) {
+		if( authkeys.indexOf(md5(raw.args[1].trim().split(" ")[2])) ) {
+			if( raw.args[0].substr(0,1) == "#" ) {
+				bot.say(raw.args[0], "Are you stupid?");
+			} else {
+				admins.push(raw.user);
+				bot.say(raw.args[0], "You are now authenticated.");
+			}
+		}
+	}
 
 	//le flush stuffs
 	if( raw.command == "PRIVMSG" && raw.args[1].substr(0,7) == "$ flush" ) {
