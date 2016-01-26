@@ -65,6 +65,12 @@
 			"channels": ["#debug", "#shota", "#maths"],
 			"regex": "^!imdb\\s+([a-zA-Z0-9 ]*)",
 			"private": true
+		},
+		{
+			"script": "./scripts/gayscope",
+			"channels": ["#debug", "#shota", "#maths"],
+			"regex": "^!horo\\s+([a-zA-Z]*)",
+			"private": true
 		}
 	],
 	"customListeners": [
