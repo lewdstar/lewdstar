@@ -36,7 +36,7 @@ module.exports = function(input, out) {
 						defs += " | " + de.textContent;
 					});
 
-					out( query + " (" + wordtype[0].textContent + ") /" + pr[0].textContent + "/" + " " + defs );
+					out( query + " (" + wordtype[0].textContent + ") /" + pr[0].textContent + "/" + " " + defs.substr(0,120) );
 					out( "More at: " + "http://www.merriam-webster.com/dictionary/"+query);
 
 				} else if (suggestions.length > 0 ) {

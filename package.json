@@ -1,6 +1,6 @@
 {
-  "name": "NodeIRC",
-  "version": "1.0.0",
+  "name": "Schbot",
+  "version": "1.5.0",
   "description": "IRCBOt",
   "main": "index.js",
   "dependencies": {
