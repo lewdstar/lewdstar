@@ -6,12 +6,12 @@ module.exports = function(input, chans, bot) {
 			bot.features.config.admins = ["shotacat","aspect", "TRG", "Kiggy", "uid24615", "Kenpari", "sid115038", "DJTweak","shadoukun"]; 
 		}
 	var admins = bot.features.config.admins;
-	var authkeys = ["afe80f9aaeaabaede002e7e0129f4b23"];
+	var authkeys = ["1646a5b49c8eb03883db1386c0084a74"];
 	var forbidden = ["pipe", "config"];
 
 	//heyitsme
-	if (raw.command =="PRIVMSG" && raw.args[1].substr(0,10) == "$ heyitsme" ) {
-		if( authkeys.indexOf(md5(raw.args[1].trim().split(" ")[2])) !== -1 ) {
+	if (raw.command =="PRIVMSG" && raw.args[1].substr(0,10) == "$ heyitsme" ) { 
+		if( authkeys.indexOf(md5(raw.args[1].trim().split(" ")[2])) !== -1 ) { 
 			if( raw.args[0].substr(0,1) == "#" ) {
 				bot.say(raw.args[0], "Are you stupid?");
 			} else {
@@ -19,7 +19,11 @@ module.exports = function(input, chans, bot) {
 				bot.say(raw.nick, "You are now authenticated.");
 			}
 		} else {
-			bot.say(raw.args[0], "No.");
+			if( raw.args[0].substr(0,1) == "#" ) {
+				bot.say(raw.args[0], "Are you stupid??");
+			} else {
+				bot.say(raw.nick, "No.");
+			}
 		}
 	}
 
