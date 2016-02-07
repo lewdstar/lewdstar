@@ -83,10 +83,16 @@
 			"event": "raw",
 			"script": "./scripts/rawish.js",
 			"channels" : ["#shota", "#debug"]
+		},
+		{
+			"event": "raw",
+			"script": "./scripts/todos.js",
+			"channels": ["#shota", "#debug"]
 		}
 	],
 	"config": {
 		"negations": [],
+		"admins": ["shotacat","aspect", "TRG", "uid24615", "Kenpari", "sid115038", "DJTweak","shadoukun"],
 		"quitMessage": ["Is this the real life? Is this just fantasy?", "I'm leaving. Am I coming back? Who knows. I'm a bot.", 
 						"Potiskh is my master", "git push origin master", "ShotaCat plz suck my hard cock",
 						"git gud", "knok knok. who dere? u. u who? u da hoe.", "PRIVMSG NICKSERV GHOST ShotaCat yiffingsecretly",
