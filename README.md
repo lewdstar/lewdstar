@@ -26,6 +26,12 @@ $ [command] [params] : Internal Commands / Bot Utilities / Etc. Most commands re
 |___ pipe [start] [target]: Tell the bot to direct messages from [start] to [target]. E.g: $ pipe #wewlad Lurker123 will direct all messages from #wewlad to Lurker123's PM.
 |___ unpipe [start] [target]: Tell the bot to unpipe the specified pipe.
 
+!todo [method] [params] : Simple Todolist
+|____ get: Fetch all of your todos.
+|____ add [message]: Add a todo to your list
+|____ mod [id] [msg]: Update a todo with new msg.
+|____ del [id]: Delete a todo
+
 !cum [tags] | [filter] | [scoresAbove]:
 	This command queries Gelbooru to find images that has the [tags] specified, [filter]s out any images with such word in their tags, and scores above [scoreAbove].
 	For example,
