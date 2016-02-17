@@ -68,10 +68,8 @@ if ( !(extra.bot.features.stcHistory instanceof Array)  ) extra.bot.features.stc
 					count = doc.getElementsByTagName("posts")[0].getAttribute("count");
 				} catch(e) {
 					out("Something went wrong: " + e);
-					var reason = doc.getElementsByTagName("response")[0].getAttribute("reason") 
-					if ( reason !== undefined ) out("e621 says: "+reason);
 					return;
-				}
+				} 
 
 				if( count > 0 ) {
 					getPic(count);

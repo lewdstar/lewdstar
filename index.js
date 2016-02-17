@@ -163,9 +163,13 @@ function initMessageListeners(callback) {
 					};
 
 				if( (new RegExp(listener.regex)).test( message.trim() ) ) {
-					processor(input, function(txt) {
-						bot.say(from, txt);
-					}, extra);
+					try {
+						processor(input, function(txt) {
+							bot.say(from, txt);
+						}, extra);
+					} catch(e) {
+						bot.say(from, "Error: "+e.message);
+					}
 				}
 
 			});
@@ -193,15 +197,13 @@ function initMessageListeners(callback) {
 					};
 
 				if( (new RegExp(listener.regex)).test( message.trim() ) ) {
-
-					processor(input, function(txt, pm) {
-						if(!pm) {
-							bot.say(channel, txt);
-						} else {
-							bot.say(from, txt);
-						}
-					}, extra);
-
+						processor(input, function(txt, pm) {
+							if(!pm) {
+								bot.say(channel, txt);
+							} else {
+								bot.say(from, txt);
+							}
+						}, extra);
 				}
 
 			});
