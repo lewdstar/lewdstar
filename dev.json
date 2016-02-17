@@ -21,7 +21,7 @@
 		{
 			"script" : "./scripts/urban",
 			"channels": ["#debug", "#shota"],
-			"regex": "^!define[\\:\\s]?(.*)",
+			"regex": "^!ud[\\:\\s]?(.*)",
 			"private": true
 		},
 		{
@@ -57,7 +57,7 @@
 		{
 			"script" : "./scripts/merweb",
 			"channels": ["#debug", "#shota", "#maths"],
-			"regex": "^!d\\s+([a-zA-Z]*)",
+			"regex": "^!define\\s+([a-zA-Z]*)",
 			"private": true
 		},
 		{
