@@ -71,6 +71,12 @@
 			"channels": ["#debug", "#shota", "#maths"],
 			"regex": "^!horo\\s+([a-zA-Z]*)",
 			"private": true
+		},
+		{
+			"script": "./scripts/status",
+			"channels": ["#debug", "#shota", "#maths"],
+			"regex": "^!status\\s*",
+			"private": true
 		}
 	],
 	"customListeners": [
