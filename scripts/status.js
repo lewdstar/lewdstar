@@ -9,9 +9,11 @@ module.exports = function(input, out, extra) {
 
 	function check(url, name) { 
 		var start = Date.now();
-		https.get('https://'+url, function(res) { 
+		var req = https.get('https://'+url, function(res) { 
 			out(name+": " + res.statusCode + " " + res.statusMessage + " [" + (Date.now()-start) + "ms] ");
-		}).on('error', function(e) {
+		})
+		req.setTimeout(10000);
+		req.on('error', function(e) {
 			out(name+": Error: " +e.code+ " [" + (Date.now()-start) + "ms] ");
 		});
 	}
