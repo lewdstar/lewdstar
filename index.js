@@ -109,6 +109,7 @@ bot.addListener('error', function(e) {
 
 
 //Connected
+var _LISTENED = 0;
 bot.addListener('registered', function(msg) {
 	/** NS
 	console.log("-   " + color("Authing: ", "cyan_bg") + "NickServ");
@@ -121,7 +122,8 @@ bot.addListener('registered', function(msg) {
 		bot.say("NickServ","IDENTIFY " + configuration.config.register.password );
 	}
 	**/
-	initMessageListeners();
+	if( _LISTENED === 0 ) initMessageListeners(); 
+	_LISTENED++;
 });
 
 var joinedChannels = [];
