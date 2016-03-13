@@ -115,7 +115,7 @@ if ( !(extra.bot.features.furHistory instanceof Array)  ) extra.bot.features.fur
 						getPic();
 					} else {
 						extra.bot.features.furHistory.push(doc.getElementsByTagName("file_url")[0].textContent.substr(-10));
-						out(doc.getElementsByTagName("file_url")[0].textContent +" <Source: "+ doc.getElementsByTagName("source")[0]+" > "+count+" results. Viewed " + extra.bot.features.furHistory.length + " pics." );
+						out(doc.getElementsByTagName("file_url")[0].textContent +" <Source: "+ doc.getElementsByTagName("source")[0].textContent+" > "+count+" results. Viewed " + extra.bot.features.furHistory.length + " pics." );
 					}
 
 				});
