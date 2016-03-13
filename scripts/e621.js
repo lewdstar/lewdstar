@@ -106,16 +106,16 @@ if ( !(extra.bot.features.furHistory instanceof Array)  ) extra.bot.features.fur
 					}
 
 					var isReject =	rejs.some(function(rej){
-						return post.getAttribute("tags").indexOf(rej) !== -1;
+						return doc.getElementsByTagName("tags")[0].textContent.indexOf(rej) !== -1;
 					});
 
-					var isViewed = ( extra.bot.features.furHistory.indexOf(post.getAttribute("file_url").substr(-10)) !== -1 );
+					var isViewed = ( extra.bot.features.furHistory.indexOf(doc.getElementsByTagName("file_url")[0].textContent.substr(-10)) !== -1 );
 
-					if( parseInt(post.getAttribute("score")) < score_thres || isReject || isViewed) {
+					if( parseInt(doc.getElementsByTagName("score")[0].textContent) < score_thres || isReject || isViewed) {
 						getPic();
 					} else {
-						extra.bot.features.furHistory.push(post.getAttribute("file_url").substr(-10));
-						out(post.getAttribute("file_url") +" <Source: "+ post.getAttribute("source")+" > "+count+" results. Viewed " + extra.bot.features.furHistory.length + " pics." );
+						extra.bot.features.furHistory.push(doc.getElementsByTagName("file_url")[0].textContent.substr(-10));
+						out(doc.getElementsByTagName("file_url")[0].textContent +" <Source: "+ doc.getElementsByTagName("source")[0]+" > "+count+" results. Viewed " + extra.bot.features.furHistory.length + " pics." );
 					}
 
 				});
