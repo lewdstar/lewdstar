@@ -1,1 +1,1 @@
-bot: node index.js -s irc.shotachan.net -e exec.json
+bot: node index.js -s irc.shotachan.net -e dev.json
