@@ -2,79 +2,79 @@
 	"messageListeners": [
 		{
 			"script": "./scripts/gelbooru",
-			"channels": ["#debug", "#shota"],
+			"channels": ["#debug", "#shota", "#general"],
 			"regex": "^!cum\\:?([\\w,\\s()-+]*)(\\|([\\w,\\s()]*)\\|?(\\-?[0-9]+)?)?",
 			"private": true
 		},
 		{
 			"script" : "./scripts/e621",
-			"channels": ["#debug", "#shota"],
+			"channels": ["#debug", "#shota", "#general"],
 			"regex": "^!fur\\:?([\\w,\\s()-+]*)(\\|([\\w,\\s()]*)\\|?(\\-?[0-9]+)?)?",
 			"private": true
 		},
 		{
 			"script" : "./scripts/stc",
-			"channels": ["#debug", "#shota"],
+			"channels": ["#debug", "#shota", "#general"],
 			"regex": "^!shota\\:?([\\w,.:\\s()-+]*)(\\|([\\w,\\s()]*)\\|?(\\-?[0-9]+)?)?",
 			"private": true
 		},
 		{
 			"script" : "./scripts/urban",
-			"channels": ["#debug", "#shota"],
+			"channels": ["#debug", "#shota", "#general"],
 			"regex": "^!ud[\\:\\s]?(.*)",
 			"private": true
 		},
 		{
 			"script": "./scripts/wiki",
-			"channels": ["#debug", "#shota", "#maths"],
+			"channels": ["#debug", "#shota", "#general", "#maths"],
 			"regex": "^!wiki\\s+(.+)",
 			"private": true
 		},
 		{
 			"script" : "./scripts/sickipedia",
-			"channels": ["#debug", "#shota"],
+			"channels": ["#debug", "#shota", "#general"],
 			"regex": "^!sick",
 			"private": true
 		},
 		{
 			"script": "./scripts/misc",
-			"channels": ["#debug", "#shota", "#maths"],
+			"channels": ["#debug", "#shota", "#general", "#maths"],
 			"regex": "^!([a-zA-Z]*)\\s?(.*)?",
 			"private": true
 		},
 		{
 			"script" : "./scripts/shiba",
-			"channels": ["#debug", "#shota"],
+			"channels": ["#debug", "#shota", "#general"],
 			"regex": "^!shiba\\s*",
 			"private": true
 		},
 		{
 			"script" : "./scripts/wolfram",
-			"channels": ["#debug", "#shota", "#maths"],
+			"channels": ["#debug", "#shota", "#general", "#maths"],
 			"regex": "^!\\?\\s+(.*)",
 			"private": true
 		},
 		{
 			"script" : "./scripts/merweb",
-			"channels": ["#debug", "#shota", "#maths"],
+			"channels": ["#debug", "#shota", "#general", "#maths"],
 			"regex": "^!define\\s+([a-zA-Z]*)",
 			"private": true
 		},
 		{
 			"script" : "./scripts/omdb",
-			"channels": ["#debug", "#shota", "#maths"],
+			"channels": ["#debug", "#shota", "#general", "#maths"],
 			"regex": "^!imdb\\s+([a-zA-Z0-9 ]*)",
 			"private": true
 		},
 		{
 			"script": "./scripts/gayscope",
-			"channels": ["#debug", "#shota", "#maths"],
+			"channels": ["#debug", "#shota", "#general", "#maths"],
 			"regex": "^!horo\\s+([a-zA-Z]*)",
 			"private": true
 		},
 		{
 			"script": "./scripts/status",
-			"channels": ["#debug", "#shota", "#maths"],
+			"channels": ["#debug", "#shota", "#general", "#maths"],
 			"regex": "^!status\\s*",
 			"private": true
 		}
@@ -83,17 +83,17 @@
 		{
 			"event": "action",
 			"script": "./scripts/actionback.js",
-			"channels" : ["#shota", "#debug"]
+			"channels" : ["#shota", "#general", "#debug"]
 		},
 		{
 			"event": "raw",
 			"script": "./scripts/rawish.js",
-			"channels" : ["#shota", "#debug"]
+			"channels" : ["#shota", "#general", "#debug"]
 		},
 		{
 			"event": "raw",
 			"script": "./scripts/todos.js",
-			"channels": ["#shota", "#debug"]
+			"channels": ["#shota", "#general", "#debug"]
 		}
 	],
 	"config": {

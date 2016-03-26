@@ -73,17 +73,35 @@ if ( process.argv.indexOf('-h') !== -1 ) {
 	return;
 }
 
+/**
 var bot = new irc.Client(serv, nick, {
 	realName: "Omnia Nepeta Cataria",
-	userName: "Fuccboi",
+	userName: "contxt",
 	autoConnect: true,
+	password: "shotachan.wqBI9u0rYNT9nYatzzCd",
 	port: port,
 	secure: true,
 	autoRejoin: true,
+	sasl: true,
 	selfSigned: true,
 	certExpired: true,
 	floodProtection: true,
-	floodProtectionDelay: 350
+	floodProtectionDelay: 350,
+	showErrors: true
+});
+**/
+
+var bot = new irc.Client("shotachan.irc.slack.com", "fuccboi", {
+	sasl: true,
+	userName: "fuccboi",
+	realName: "fuccboi",
+	autoConnect: true,
+	password: "shotachan.Mdyz2ydzEUxUh1Tw3bgO",
+	port: 6697,
+	secure: true,
+	certExpired: true,
+	selfSigned: true,
+	showErrors: true
 });
 
 bot.features = {}; // Reserved spaces for modules.
@@ -106,7 +124,6 @@ bot.addListener('error', function(e) {
 	console.log(color("Error: ", "red"));
 	console.log(e);
 });
-
 
 //Connected
 var _LISTENED = 0;
