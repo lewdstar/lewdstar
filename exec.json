@@ -2,79 +2,79 @@
 	"messageListeners": [
 		{
 			"script": "./scripts/gelbooru",
-			"channels": ["#debug", "#shota"],
+			"channels": ["#information", "#general"],
 			"regex": "^!cum\\:?([\\w,.:\\s()-+]*)(\\|([\\w,\\s()]*)\\|?(\\-?[0-9]+)?)?",
 			"private": true
 		},
 		{
 			"script" : "./scripts/e621",
-			"channels": ["#debug", "#shota"],
+			"channels": ["#information", "#general"],
 			"regex": "^!fur\\:?([\\w,.:\\s()-+]*)(\\|([\\w,\\s()]*)\\|?(\\-?[0-9]+)?)?",
 			"private": true
 		},
 		{
 			"script" : "./scripts/stc",
-			"channels": ["#debug", "#shota"],
+			"channels": ["#information", "#general"],
 			"regex": "^!shota\\:?([\\w,.:\\s()-+]*)(\\|([\\w,\\s()]*)\\|?(\\-?[0-9]+)?)?",
 			"private": true
 		},
 		{
 			"script" : "./scripts/urban",
-			"channels": ["#debug", "#shota"],
+			"channels": ["#information", "#general"],
 			"regex": "^!ud[\\:\\s]?(.*)",
 			"private": true
 		},
 		{
 			"script": "./scripts/wiki",
-			"channels": ["#debug", "#shota", "#maths"],
+			"channels": ["#information", "#general"],
 			"regex": "^!wiki\\s+(.+)",
 			"private": true
 		},
 		{
 			"script" : "./scripts/sickipedia",
-			"channels": ["#debug", "#shota"],
+			"channels": ["#information", "#general"],
 			"regex": "^!sick",
 			"private": true
 		},
 		{
 			"script": "./scripts/misc",
-			"channels": ["#debug", "#shota", "#maths"],
+			"channels": ["#information", "#general"],
 			"regex": "^!([a-zA-Z]*)\\s?(.*)?",
 			"private": true
 		},
 		{
 			"script" : "./scripts/shiba",
-			"channels": ["#debug", "#shota"],
+			"channels": ["#information", "#general"],
 			"regex": "^!shiba\\s*",
 			"private": true
 		},
 		{
 			"script" : "./scripts/wolfram",
-			"channels": ["#debug", "#shota", "#maths"],
+			"channels": ["#information", "#general"],
 			"regex": "^!\\?\\s+(.*)",
 			"private": true
 		},
 		{
 			"script" : "./scripts/merweb",
-			"channels": ["#debug", "#shota", "#maths"],
+			"channels": ["#information", "#general"],
 			"regex": "^!define\\s+([a-zA-Z]*)",
 			"private": true
 		},
 		{
 			"script" : "./scripts/omdb",
-			"channels": ["#debug", "#shota", "#maths"],
+			"channels": ["#information", "#general"],
 			"regex": "^!imdb\\s+([a-zA-Z0-9 ]*)",
 			"private": true
 		},
 		{
 			"script": "./scripts/gayscope",
-			"channels": ["#debug", "#shota", "#maths"],
+			"channels": ["#information", "#general"],
 			"regex": "^!horo\\s+([a-zA-Z]*)",
 			"private": true
 		},
 		{
 			"script": "./scripts/status",
-			"channels": ["#debug", "#shota", "#maths"],
+			"channels": ["#information", "#general"],
 			"regex": "^!status\\s*",
 			"private": true
 		}
@@ -83,22 +83,22 @@
 		{
 			"event": "action",
 			"script": "./scripts/actionback.js",
-			"channels" : ["#shota", "#debug"]
+			"channels" : ["#general"]
 		},
 		{
 			"event": "raw",
 			"script": "./scripts/rawish.js",
-			"channels" : ["#shota", "#debug"]
+			"channels" : ["#general"]
 		},
 		{
 			"event": "raw",
 			"script": "./scripts/todos.js",
-			"channels": ["#shota", "#debug"]
+			"channels": ["#general"]
 		}
 	],
 	"config": {
 		"negations": [],
-		"admins": ["shotacat","aspect", "TRG", "uid24615", "Kenpari", "sid115038", "DJTweak","shadoukun"],
+		"admins": ["shotacat","aspect", "therobotghost", "contxt", "Kenpari", "jamaic", "shadoukun"],
 		"quitMessage": ["Is this the real life? Is this just fantasy?", "I'm leaving. Am I coming back? Who knows. I'm a bot.", 
 						"Potiskh is my master", "git push origin master", "ShotaCat plz suck my hard cock",
 						"git gud", "knok knok. who dere? u. u who? u da hoe.", "PRIVMSG NICKSERV GHOST ShotaCat yiffingsecretly",
@@ -106,7 +106,7 @@
 						"I can be proudly arrogant about being smart, but I can not ever I'm wise.", "lim x->inf sin(x)/x = 0",
 						"How do you mathematically rotate a quadratic graph?", "unz unz unz unz", ".................poopop"],
 		"register" : {
-			"bool" : true,
+			"bool" : false,
 			"username" : "Fuccboi",
 			"password" : "shotacat"
 		}

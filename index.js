@@ -46,7 +46,7 @@ var color = require('ansi-color').set;
 
 var port = process.argv.indexOf('-p') > 0 ? process.argv[process.argv.indexOf('-p')+1] : "6697";
 var exec = process.argv.indexOf('-e') > 0 ? process.argv[process.argv.indexOf('-e')+1] : null;
-var nick = process.argv.indexOf('-n') > 0 ? process.argv[process.argv.indexOf('-n')+1] : "Fuccboi";
+var nick = process.argv.indexOf('-n') > 0 ? process.argv[process.argv.indexOf('-n')+1] : "fuccboi";
 var serv = process.argv.indexOf('-s') > 0 ? process.argv[process.argv.indexOf('-s')+1] : null;
 
 if (exec == null) {
@@ -91,7 +91,7 @@ var bot = new irc.Client(serv, nick, {
 });
 **/
 
-var bot = new irc.Client("shotachan.irc.slack.com", "fuccboi", {
+var bot = new irc.Client(serv, nick, {
 	sasl: true,
 	userName: "fuccboi",
 	realName: "fuccboi",
