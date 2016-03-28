@@ -31,12 +31,6 @@
 			"private": true
 		},
 		{
-			"script" : "./scripts/sickipedia",
-			"channels": ["#information", "#general"],
-			"regex": "^!sick",
-			"private": true
-		},
-		{
 			"script": "./scripts/misc",
 			"channels": ["#information", "#general"],
 			"regex": "^!([a-zA-Z]*)\\s?(.*)?",
@@ -81,19 +75,9 @@
 	],
 	"customListeners": [
 		{
-			"event": "action",
-			"script": "./scripts/actionback.js",
-			"channels" : ["#general"]
-		},
-		{
 			"event": "raw",
 			"script": "./scripts/rawish.js",
 			"channels" : ["#general"]
-		},
-		{
-			"event": "raw",
-			"script": "./scripts/todos.js",
-			"channels": ["#general"]
 		}
 	],
 	"config": {

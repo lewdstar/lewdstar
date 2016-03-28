@@ -73,24 +73,6 @@ if ( process.argv.indexOf('-h') !== -1 ) {
 	return;
 }
 
-/**
-var bot = new irc.Client(serv, nick, {
-	realName: "Omnia Nepeta Cataria",
-	userName: "contxt",
-	autoConnect: true,
-	password: "shotachan.wqBI9u0rYNT9nYatzzCd",
-	port: port,
-	secure: true,
-	autoRejoin: true,
-	sasl: true,
-	selfSigned: true,
-	certExpired: true,
-	floodProtection: true,
-	floodProtectionDelay: 350,
-	showErrors: true
-});
-**/
-
 var bot = new irc.Client(serv, nick, {
 	sasl: true,
 	userName: "fuccboi",

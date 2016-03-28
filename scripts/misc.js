@@ -5,7 +5,7 @@ module.exports = function(input, out, extra) {
 	var spec = input.regex[2]? input.regex[2] : "";
 
 	if (what == "source") {
-		out("Source available on GitHub: " + "http://github.com/ptskh/schbot");
+		out("Source available on GitHub: " + " removed");
 	}
 	else if ( what == "help" ) {
 		out("Available commands: $, fur , define, d, wiki, source, help, sick, gal, cum, stfu, unmute, roll, choose, ?. PM !help for more.");
@@ -13,17 +13,14 @@ module.exports = function(input, out, extra) {
 			out("? [query]: Queries to Wolfram|Alpha. ", true)
 			out("cum [keywords] [, keyword2] | [filter] [, filter 2] | [rating above]: Returns a random image from Gelbooru.", true);
 			out("fur : same syntax as above for e621", true);
-			out("gal: returns a random image from the Shotachan Gallery", true);
-			out("define [text] : Fetch definition of a word from UrbanDictionary. ", true);
-			out("d [text] : Fetch definition of a word from Merriam-Webster Dictionary. ", true);
+			out("ud [text] : Fetch definition of a word from UrbanDictionary. ", true);
+			out("define [text] : Fetch definition of a word from Merriam-Webster Dictionary. ", true);
 			out("wiki [text] : Fetch summary of Wikipedia article if found. " , true);
-			out("source: Returns link to GitHub Repository of this bot.", true);
+			out("source: Returns link to Repository of this bot.", true);
 			out("help: Shows this help message.", true);
-			out("sick: Returns a one of the top daily jokes from Sickipedia. ", true);
-			out("stfu/unmute: Mute or unmute bot.", true);
 			out("roll [max]: Roll a random number from 1 to [max]", true);
 			out("choose [item1, item2, item3]: choose a random item.", true);
-			out("$ commands are undocumented. There are pipe, unpipe, kill, invite, part commands for $.", true);
+			out("$ [cmd]: admin commands", true);
 		}
 	}
 	else if ( what == "roll" ) {
@@ -40,10 +37,6 @@ module.exports = function(input, out, extra) {
 		}
 		out(key);
 
-	}
-	else if ( what == "throw" ) {
-		extra.bot.disconnect("Someone Threw an Error", test);
-		throw new Error("thre an rror");
 	}
 	else if ( what == "choose") {
 		if ( spec == "" ) {
