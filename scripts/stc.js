@@ -113,7 +113,7 @@ if ( !(extra.bot.features.stcHistory instanceof Array)  ) extra.bot.features.stc
 						getPic();
 					} else {
 						extra.bot.features.stcHistory.push(post.getAttribute("file_url").substr(-10));
-						out("*Viewed _"+extra.bot.features.stcHistory.length+"_ pics out of _" +count+ "_ results." )
+						out("*Viewed _"+extra.bot.features.stcHistory.length+"_ pics out of _" +count+ "_ results.*" )
 						out(post.getAttribute("id")+" "+post.getAttribute("file_url"));
 						out("> Source: "+ post.getAttribute("source"));
 					}
