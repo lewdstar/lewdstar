@@ -36,12 +36,12 @@ module.exports = function( input, out ) {
 						out("Inquires more specifically, please. Perhaps you want: " + disamb.join(" or ") + "?");
 
 					} else if (obj[2][0] !== "" && !(/^This.{0,10}a redirect/ig.test(obj[2][0])) ) {
-						out(obj[2][0] + " < " + obj[3][0] +" >");
+						out(obj[2][0] + " // " + obj[3][0] );
 					} else {
 						deepsearch(obj[3][0]);
 					}
 				} else {
-					out("No one knows about "+query+", apparently.");
+					out("No one knows about _"+query+"_, apparently.");
 				}
 			})
 		}).on('error', function(e) {

@@ -7,8 +7,8 @@ module.exports = function(input, out, extra) {
 
 //Schbot Help
 if( input.regex[0].indexOf(' help') !== -1  ) {  
-	out("--e621: !fur tags, to, search | tag, to, filter | scores over", true);
-	out("      Example: !fur vocaloid, kagamine len | 1girl, socks | 20", true);
+	out("--shota: !shota tags, to, search | tag, to, filter | scores over", true);
+	out("      Example: !shota vocaloid, kagamine len | 1girl, socks | 20", true);
 	return;
 }
 
@@ -84,7 +84,7 @@ if ( !(extra.bot.features.stcHistory instanceof Array)  ) extra.bot.features.stc
 	}
 
 	var getPic = function() {
-		if ( offset > count  || offset > 24)  { out("I failed. (25 rounds) (or you have seen all imgs of this tag)"); return; }
+		if ( offset > count  || offset > 24)  { out("`No images found or all have been seen.`"); return; }
 
 		var response = "";
 		
@@ -100,7 +100,7 @@ if ( !(extra.bot.features.stcHistory instanceof Array)  ) extra.bot.features.stc
 						post = doc.getElementsByTagName("post")[0];
 
 					if( post == undefined ) {
-						out("Knot a chance! <Something went wrong and I didn't even bother fixing it correctly.>"); return;
+						out("`Something went wrong and I didn't even bother fixing it correctly.`"); return;
 					}
 
 					var isReject =	rejs.some(function(rej){
@@ -113,13 +113,15 @@ if ( !(extra.bot.features.stcHistory instanceof Array)  ) extra.bot.features.stc
 						getPic();
 					} else {
 						extra.bot.features.stcHistory.push(post.getAttribute("file_url").substr(-10));
-						out(post.getAttribute("id") +" "+post.getAttribute("file_url") +" <Source: "+ post.getAttribute("source")+" > "+count+" results. Viewed " + extra.bot.features.stcHistory.length + " pics." );
+						out("*Viewed _"+extra.bot.features.stcHistory.length+"_ pics out of _" +count+ "_ results." )
+						out(post.getAttribute("id")+" "+post.getAttribute("file_url"));
+						out("> Source: "+ post.getAttribute("source"));
 					}
 
 				});
 		}).on('error', function(e) {
 			console.log(e);
-			out('You almost got your eye-candy but something happened: '+e.message);
+			out('You almost got your eye-candy but something happened: `'+e.message+'`');
 		});
 
 		offset++;

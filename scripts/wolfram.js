@@ -66,7 +66,7 @@ module.exports = function(input, out) {
 						return el.getAttribute("desc");
 					});
 
-					out("Can you just be more specific? Is " + word + " " + assumptions.join("or") + "?" );
+					out("Can you just be more specific? Is " + word + " " + assumptions.join(" or ") + "?" );
 				} else {
 
 					var count = 0;
@@ -88,12 +88,12 @@ module.exports = function(input, out) {
 					if( count == 0 ) {
 						forEach(plaintxts, function(el) {
 							if ( count > MAX_OUT ) return;
-								out(unescape(
+								out("```"+unescape(
 									el.textContent
 									.replace(/\n/ig," ").replace(/\\\:/ig,"\\u")
 									.replace(/\\u([\d\w]{4})/gi, function (match, grp) {
 	    							return String.fromCharCode(parseInt(grp, 16)); 
-	    							})
+	    							})+"```"
 								));						
 								count += el.textContent.length;
 						});
