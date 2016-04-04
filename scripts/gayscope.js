@@ -26,7 +26,7 @@ module.exports = function(input, out, extra) {
 				}
 
 				if (f == 1) {
-					out( descr.item(index).textContent.split("</p>")[0].substring(3) );
+					out( descr.item(index-1).textContent.split("</p>")[0].substring(3) );
 				} else {
 					out( "What's your sign? ");
 				}
