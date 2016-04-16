@@ -3,7 +3,7 @@ var md5 = require('md5');
 module.exports = function(input, chans, bot) {
 	var raw = input[0];
 		if ( !(bot.features.config.admins instanceof Array) ) { 
-			bot.features.config.admins = ["shotacat","aspect", "TRG", "uid24615", "Kenpari", "sid115038", "DJTweak","shadoukun"]; 
+			bot.features.config.admins = ["shotacat","aspect", "therobotsghost", "contxt", "kenpari", "jamaic", "tweaker","shadoukun"]; 
 		}
 	var admins = bot.features.config.admins;
 	var authkeys = ["1646a5b49c8eb03883db1386c0084a74"];
