@@ -5,10 +5,10 @@ module.exports = function(input, out, extra) {
 	var spec = input.regex[2]? input.regex[2] : "";
 
 	if (what == "source") {
-		out("Source available on GitHub: " + " removed");
+		out("Git Clone this Repo: " + " https://git.heroku.com/schbot.git");
 	}
 	else if ( what == "help" ) {
-		out("Available commands: $, fur , define, d, wiki, source, help, sick, gal, cum, stfu, unmute, roll, choose, ?. PM !help for more.");
+		out("Available commands: $, ?, shota, fur, define, ud, wiki, source, help, cum, omdb, roll, choose, shiba, genkey, imdb. PM !help for more.");
 		if ( extra.from.substr(0,1) != "#" ) {
 			out("? [query]: Queries to Wolfram|Alpha. ", true)
 			out("cum [keywords] [, keyword2] | [filter] [, filter 2] | [rating above]: Returns a random image from Gelbooru.", true);

@@ -61,12 +61,6 @@
 			"private": true
 		},
 		{
-			"script": "./scripts/gayscope",
-			"channels": ["#information", "#general", "#kemono-furry", "#pandoras-box"],
-			"regex": "^!horo\\s+([a-zA-Z]*)",
-			"private": true
-		},
-		{
 			"script": "./scripts/status",
 			"channels": ["#information", "#general", "#kemono-furry", "#pandoras-box"],
 			"regex": "^!status\\s*",
