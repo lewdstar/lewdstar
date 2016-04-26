@@ -1,2 +1,2 @@
-node index.js -n Schbot -s irc.shotachan.net -e exec.txt -quiet
+node index.js -s shotachan.irc.slack.com -e exec.json
 clear
