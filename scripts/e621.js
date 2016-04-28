@@ -56,7 +56,13 @@ if ( !(extra.bot.features.furHistory instanceof Array)  ) extra.bot.features.fur
 
 	var getCount = function(tags) {
 		var response = "";
-		http.get("https://e621.net/post/index.xml?tags="+validizeTags(tags), function(res) {
+		http.get({
+			"host": "e621.net",
+			"path": "/post/index.xml?tags="+validizeTags(tags), 
+			"headers": {
+				"User-Agent" : "ShotachanSlackBot/7.0 (by shotacat)"
+			}
+		}, function(res) {
 			res.on('data', function(data) {
 				response += data;
 			});
@@ -67,7 +73,7 @@ if ( !(extra.bot.features.furHistory instanceof Array)  ) extra.bot.features.fur
 				try {
 					count = doc.getElementsByTagName("posts")[0].getAttribute("count");
 				} catch(e) {
-					out("Something went wrong: " + e);
+					//out("Something went wrong: " + e);
 					var reason = doc.getElementsByTagName("response")[0].getAttribute("reason") 
 					if ( reason !== undefined ) out("e621 says: "+reason);
 					return;
@@ -90,7 +96,13 @@ if ( !(extra.bot.features.furHistory instanceof Array)  ) extra.bot.features.fur
 
 		var response = "";
 		
-		http.get("https://e621.net/post/index.xml?limit=1&page="+Math.floor(Math.random()*count)+"&tags="+validizeTags(tags), 
+		http.get({
+			"host":"e621.net",
+			"path": "/post/index.xml?limit=1&page="+Math.floor(Math.random()*count)+"&tags="+validizeTags(tags), 
+			"headers": {
+				"User-Agent": "ShotachanSlackBot/7.0 (by shotacat)"
+			}
+		},
 			function(res) {
 				res.on('data', function(data) {
 					response += data;

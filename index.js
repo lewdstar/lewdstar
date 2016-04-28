@@ -169,7 +169,8 @@ function initMessageListeners(callback) {
 							bot.say(from, txt);
 						}, extra);
 					} catch(e) {
-						bot.say(from, "Error: "+e.message);
+						bot.say(from, "index.js[172] Error: "+e.message);
+						console.log(e);
 					}
 				}
 
