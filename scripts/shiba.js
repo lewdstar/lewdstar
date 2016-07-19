@@ -14,7 +14,7 @@ module.exports = function( inp, out, extra) {
 	var main  = function() {
 		var data = "";
 		var links = [];
-		http.get('https://mobile.twitter.com/shibesbot?p=s', function(res) {
+		http.get('https://mobile.twitter.com/shibbnbot?p=s', function(res) {
 
 			res.on('data', function(dat) {
 				data += dat;
