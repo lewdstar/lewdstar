@@ -24,7 +24,7 @@ module.exports = function( inp, out, extra) {
 
 				data = data.split('\n');
 				data.forEach( function(item, index) {
-					if( item.trim().substr(0,17) == "href=\"/shibesbot/" ) {
+					if( item.trim().substr(0,17) == "href=\"/shibbnbot/" ) {
 						var result = /href=\"(.*)\"/.exec(item.trim());
 						links.push("https://mobile.twitter.com"+result[1]);
 					}
