@@ -2,67 +2,67 @@
 	"messageListeners": [
 		{
 			"script": "./scripts/gelbooru",
-			"channels": ["#information", "#general", "#kemono-furry", "#pandoras-box"],
+			"channels": ["#art-hangout", "#general", "#kemono-furry", "#pandoras-box"],
 			"regex": "^!cum\\:?([\\w,.:\\s()-+]*)(\\|([\\w,\\s()]*)\\|?(\\-?[0-9]+)?)?",
 			"private": true
 		},
 		{
 			"script" : "./scripts/e621",
-			"channels": ["#information", "#general", "#kemono-furry", "#pandoras-box"],
+			"channels": ["#art-hangout", "#general", "#kemono-furry", "#pandoras-box"],
 			"regex": "^!fur\\:?([\\w,.:\\s()-+]*)(\\|([\\w,\\s()]*)\\|?(\\-?[0-9]+)?)?",
 			"private": true
 		},
 		{
 			"script" : "./scripts/stc",
-			"channels": ["#information", "#general", "#kemono-furry", "#pandoras-box"],
+			"channels": ["#art-hangout", "#general", "#kemono-furry", "#pandoras-box"],
 			"regex": "^!shota\\:?([\\w,.:\\s()-+]*)(\\|([\\w,\\s()]*)\\|?(\\-?[0-9]+)?)?",
 			"private": true
 		},
 		{
 			"script" : "./scripts/urban",
-			"channels": ["#information", "#general", "#kemono-furry", "#pandoras-box"],
+			"channels": ["#art-hangout", "#general", "#kemono-furry", "#pandoras-box"],
 			"regex": "^!ud[\\:\\s]?(.*)",
 			"private": true
 		},
 		{
 			"script": "./scripts/wiki",
-			"channels": ["#information", "#general", "#kemono-furry", "#pandoras-box"],
+			"channels": ["#art-hangout", "#general", "#kemono-furry", "#pandoras-box"],
 			"regex": "^!wiki\\s+(.+)",
 			"private": true
 		},
 		{
 			"script": "./scripts/misc",
-			"channels": ["#information", "#general", "#kemono-furry", "#pandoras-box"],
+			"channels": ["#art-hangout", "#general", "#kemono-furry", "#pandoras-box"],
 			"regex": "^!([a-zA-Z]*)\\s?(.*)?",
 			"private": true
 		},
 		{
 			"script" : "./scripts/shiba",
-			"channels": ["#information", "#general", "#kemono-furry", "#pandoras-box"],
+			"channels": ["#art-hangout", "#general", "#kemono-furry", "#pandoras-box"],
 			"regex": "^!shiba\\s*",
 			"private": true
 		},
 		{
 			"script" : "./scripts/wolfram",
-			"channels": ["#information", "#general", "#kemono-furry", "#pandoras-box"],
+			"channels": ["#art-hangout", "#general", "#kemono-furry", "#pandoras-box"],
 			"regex": "^!\\?\\s+(.*)",
 			"private": true
 		},
 		{
 			"script" : "./scripts/merweb",
-			"channels": ["#information", "#general", "#kemono-furry", "#pandoras-box"],
+			"channels": ["#art-hangout", "#general", "#kemono-furry", "#pandoras-box"],
 			"regex": "^!define\\s+([a-zA-Z]*)",
 			"private": true
 		},
 		{
 			"script" : "./scripts/omdb",
-			"channels": ["#information", "#general", "#kemono-furry", "#pandoras-box"],
+			"channels": ["#art-hangout", "#general", "#kemono-furry", "#pandoras-box"],
 			"regex": "^!imdb\\s+([a-zA-Z0-9 ]*)",
 			"private": true
 		},
 		{
 			"script": "./scripts/status",
-			"channels": ["#information", "#general", "#kemono-furry", "#pandoras-box"],
+			"channels": ["#art-hangout", "#general", "#kemono-furry", "#pandoras-box"],
 			"regex": "^!status\\s*",
 			"private": true
 		}
