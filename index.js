@@ -86,6 +86,8 @@ var bot = new irc.Client(serv, nick, {
 	showErrors: true
 });
 
+var globalLastMessage = [];
+
 bot.features = {}; // Reserved spaces for modules.
 bot.color = irc.colors.wrap;
 
@@ -179,6 +181,9 @@ function initMessageListeners(callback) {
 		
 		//Channel.
 		listener.channels.forEach(function(channel) {
+			//create Last Message holder
+			globalLastMessage[channel] = "";
+
 			//Negation channels
 			if( configuration.config.negations.indexOf(channel) !== -1 ) return;
 
@@ -197,7 +202,7 @@ function initMessageListeners(callback) {
 						from: channel,
 						bot: bot
 					};
-
+					
 				if( (new RegExp(listener.regex)).test( message.trim() ) ) {
 						processor(input, function(txt, pm) {
 							if(!pm) {
@@ -206,8 +211,22 @@ function initMessageListeners(callback) {
 								bot.say(from, txt);
 							}
 						}, extra);
-				}
-
+				} else if(  (new RegExp(listener.regex)).test( message.trim() +" "+ globalLastMessage[channel])  ) {
+					console.log(message.trim() + " " + globalLastMessage[channel])
+						processor({
+								from: from,
+								regex: (new RegExp(listener.regex)).exec(message.trim() + " " + globalLastMessage[channel] ) 
+							}, function(txt, pm) {
+							if(!pm) {
+								bot.say(channel, txt);
+							} else {
+								bot.say(from, txt);
+							}
+						}, extra);
+				} else {
+					globalLastMessage[channel] = (message.trim().substr(0,1) == "!" )? globalLastMessage[channel] : message.trim();
+				}		
+				
 			});
 		});
 
