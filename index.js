@@ -5,7 +5,7 @@ const fs  		= require('fs');
 
 var bot = new Discord.Client();
 
-bot.loginWithToken('MjE2ODA0MjE3ODYyNDg4MDY1.CpuzVw.9FtcJtASmr9YIqRQIHBvu9X_IM8', (err) => {
+bot.loginWithToken('MjE3MDgwMTM4ODU5NDEzNTA0.CpvbKA.fdDSNb4Ry6ZHIP82OryHtRZ0xVs', (err) => {
 	console.log('Login Error:', err);
 });
 
