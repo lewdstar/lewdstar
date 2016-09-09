@@ -1,14 +1,10 @@
 process.stdin.setEncoding('utf8');
 
 const Discord   = require('discord.js');
+const token 	= 'MjE3MDgwMTM4ODU5NDEzNTA0.CrOZxw.05GAzYdej6eukExXRGQJGaT3Ths';
 const fs  		= require('fs');
 
 var bot = new Discord.Client();
-
-bot.loginWithToken('MjE3MDgwMTM4ODU5NDEzNTA0.CpvbKA.fdDSNb4Ry6ZHIP82OryHtRZ0xVs', (err) => {
-	console.log('Login Error:', err);
-});
-
 bot.features = {}; // Reserved spaces for modules.
 
 try {
@@ -34,8 +30,8 @@ bot.on('message', (message) => {
 				from: message.channel,
 				regex: regex.exec(message.content)
 			}, (txt, pm) => {
-				if( !pm ) { bot.sendMessage(message.channel, txt) } else {
-					bot.sendMessage(message.authro, txt);
+				if( !pm ) { message.channel.sendMessage(txt) } else {
+					message.author.sendMessage(txt);
 				}
 			}, {
 				from: message.channel.toString().substr(1, message.channel.toString().length-2),
@@ -45,3 +41,21 @@ bot.on('message', (message) => {
 		}
 	})
 });
+
+bot.on('ready', () => {
+	console.log("I'm ready");
+	bot.guilds.find('name', 'Shotachan').channels.find('name','general').sendMessage("I'm ready").
+	then(() => {
+		console.log("Sent to #general that I'm ready.");
+	});
+})
+
+bot.on('error', (error) => {
+	console.log("error:");
+	console.log(error);
+});
+
+bot.login(token);
+
+
+console.log("Hello. This bot is running on Node Version: " + process.version);
