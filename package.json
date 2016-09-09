@@ -9,7 +9,7 @@
   "devDependencies": {},
   "engines":{
     "node": "6.5.0"
-  }
+  },
   "scripts": {
     "test": "echo test failed or passed && exit 0"
   },
