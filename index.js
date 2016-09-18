@@ -17,6 +17,8 @@ try {
 	process.exit();
 }
 
+var mainGuild = null;
+
 bot.on('message', (message) => {
 	if(message.author.username == bot.user.username) return;
 
@@ -28,6 +30,8 @@ bot.on('message', (message) => {
 
 			processor({
 				from: message.channel,
+				guild: mainGuild,
+				msg: message,
 				regex: regex.exec(message.content)
 			}, (txt, pm) => {
 				if( !pm ) { message.channel.sendMessage(txt) } else {
@@ -43,11 +47,17 @@ bot.on('message', (message) => {
 });
 
 bot.on('ready', () => {
-	console.log("I'm ready");
-	bot.guilds.find('name', 'Shotachan').channels.find('name','general').sendMessage("I'm ready").
-	then(() => {
-		console.log("Sent to #general that I'm ready.");
-	});
+	console.log("is ready");
+	mainGuild = bot.guilds.find('name', 'Shotachan');
+	var chan = mainGuild.channels.find('name','general');
+	var owner = mainGuild.members.find('id','216799559714603008').user;
+	if( owner.status == "online" ) {
+		if(owner.game !== null) {
+			chan.sendMessage(`Tell @${owner.username}#${owner.discriminator} to quit playing ${owner.game.name} and fix me.`);
+		}
+	} else {
+		chan.sendMessage("Owner of the bot is offline. If I just died from a command. Please tell me.")
+	}
 })
 
 bot.on('error', (error) => {
