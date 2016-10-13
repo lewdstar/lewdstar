@@ -113,7 +113,7 @@ if ( !(extra.bot.features.stcHistory instanceof Array)  ) extra.bot.features.stc
 						getPic();
 					} else {
 						extra.bot.features.stcHistory.push(post.getAttribute("file_url").substr(-10));
-						out(post.getAttribute("file_url")+" // Viewed "+extra.bot.features.stcHistory.length+" // "+count+" results // Source: "+ post.getAttribute("source").replace('http',''));
+						out(post.getAttribute("file_url")+" // Viewed "+extra.bot.features.stcHistory.length+" // "+count+" results // Source: <"+ post.getAttribute("source")+">");
 					}
 
 				});
