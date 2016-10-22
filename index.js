@@ -19,7 +19,12 @@ try {
 
 var mainGuild = null;
 
-bot.on('message', (message) => {
+bot.on('message', processMessage);
+
+bot.on('messageUpdate', processMessage);
+
+
+function processMessage(message) { console.log("got or updated");
 	if(message.author.username == bot.user.username) return;
 
 	bot.features.config.messageListeners.forEach( listener => {
@@ -43,8 +48,8 @@ bot.on('message', (message) => {
 			});
 
 		}
-	})
-});
+	});
+}
 
 bot.on('ready', () => {
 	console.log("is ready");
