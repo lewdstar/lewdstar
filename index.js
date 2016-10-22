@@ -21,8 +21,7 @@ var mainGuild = null;
 
 bot.on('message', processMessage);
 
-bot.on('messageUpdate', processMessage);
-
+bot.on('messageUpdate', (a,b) => processMessage(b));
 
 function processMessage(message) {
 	if(message.author.username == bot.user.username) return;
