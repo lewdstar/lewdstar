@@ -24,7 +24,7 @@ bot.on('message', processMessage);
 bot.on('messageUpdate', processMessage);
 
 
-function processMessage(message) { console.log("got or updated");
+function processMessage(message) {
 	if(message.author.username == bot.user.username) return;
 
 	bot.features.config.messageListeners.forEach( listener => {
