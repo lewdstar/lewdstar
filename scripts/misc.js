@@ -25,7 +25,7 @@ module.exports = function(input, out, extra) {
 	}
 	else if ( what == "roll" ) {
 		spec = (spec == "")? 100 : spec;
-		out( Math.round( 1 + (Math.random() * (parseInt(spec)-1) )  ));
+		out( Math.floor( 1 + (Math.random() * parseInt(spec))));
 	}
 	else if ( what == "genkey") {
 		var params = spec.split(" ");
