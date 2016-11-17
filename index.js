@@ -52,16 +52,6 @@ function processMessage(message) {
 
 bot.on('ready', () => {
 	console.log("is ready");
-	mainGuild = bot.guilds.find('name', 'Shotachan');
-	var chan = mainGuild.channels.find('name','general');
-	var owner = mainGuild.members.find('id','216799559714603008').user;
-	if( owner.status == "online" ) {
-		if(owner.game !== null) {
-			chan.sendMessage(`Tell @${owner.username}#${owner.discriminator} to quit playing ${owner.game.name} and fix me.`);
-		}
-	} else {
-		chan.sendMessage("Owner of the bot is offline. If I just died from a command. Please tell me.")
-	}
 })
 
 bot.on('error', (error) => {

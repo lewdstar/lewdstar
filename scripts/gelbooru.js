@@ -126,7 +126,7 @@ if ( !(extra.bot.features.gelbooruHistory instanceof Array)  ) extra.bot.feature
 						getPic();
 					} else {
 						extra.bot.features.gelbooruHistory.push(post.getAttribute("file_url").substr(-10));
-						out("http://gelbooru.com/?page=post&s=view&id="+ post.getAttribute("id") +" // "+count+" results. Viewed "+extra.bot.features.gelbooruHistory.length+" pics." );
+						out(post.getAttribute("file_url") +" // "+count+" results. Viewed "+extra.bot.features.gelbooruHistory.length+" pics." );
 					}
 
 				});
