@@ -26,7 +26,7 @@ if ( !(extra.bot.features.furHistory instanceof Array)  ) extra.bot.features.fur
 	var main = function() {
 		//Fill tags
 		for ( var i=0; i < input.regex[1].trim().split(',').length; i++ ) {
-			tags.push( input.regex[1].trim().split(',')[i].trim() );
+			tags.push( input.regex[1].trim().split(',')[i].trim().toLowerCase() );
 		}
 		//Throwback
 		if( tags.length < 3 && tags[1] === "" ) {
@@ -44,6 +44,8 @@ if ( !(extra.bot.features.furHistory instanceof Array)  ) extra.bot.features.fur
 				rejs.push( input.regex[3].trim().split(',')[i].trim() );
 			}
 		}
+
+		if( tags.indexOf("scat") !== -1 || tags.indexOf("poop") !== -1) return;
 		//Score threshold
 		score_thres = input.regex[4] || 0;
 	
