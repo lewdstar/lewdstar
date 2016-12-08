@@ -1,16 +1,37 @@
 Schbot
 =============
 
-Uses [PotIRCl](https://github.com/potasmic/PotIRCl)
 
 ## Install
 ```shell
-$ git clone [URI to this repo]
+$ git clone https://bitbucket.org/contxtl/schbot/
 ```
 
 ## Run
 ```shell
-$ nodejs index -n IRCNick -s foo.irc.net -e exec.json
+$ node index.js -e exec.json
+```
+
+## Exec.json
+
+The file `exec.json` should include:
+
+```javascript
+{
+	"mainGuild" : "nameOfGuild",
+	"token" : "discordToken",
+	"messageListeners" : [
+		{
+			"script": "./path/to/script",
+			"regex": "^!escaped\\w+regex"
+		},
+		{
+			"script": "./path/to/whatever",
+			"regex": "regexNumber2$"
+		}
+	]
+}
+
 ```
 
 ## Commands in this repo
