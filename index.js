@@ -51,6 +51,7 @@ function processMessage(message) {
 }
 
 bot.on('ready', () => {
+	mainGuild = bot.guilds.find('name', configuration.guildName);
 	console.log("is ready");
 })
 

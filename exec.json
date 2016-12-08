@@ -1,4 +1,5 @@
 {
+	"guildName" : "Shotachan",
 	"messageListeners": [
 		{
 			"script": "./scripts/gelbooru",
