@@ -15,23 +15,6 @@ $ nodejs index -n IRCNick -s foo.irc.net -e exec.json
 
 ## Commands in this repo
 ```
-$ [command] [params] : Internal Commands / Bot Utilities / Etc. Most commands requires to be on admin list.
-|___ heyitsme [authkey]: Authorize with the bot when you are not on the adminlist.
-|___ flush [storageName]: Several modules of this bot logs some data (history, etc.). Flush these datas using this command.
-|___ kill [botName]: Kill the bot. You must type the nick of the bot. (Because there might be other bots using the same program)
-|___ auth: Tell the bot to GHOST and NickServ IDENTIFY.
-|___ part [botName]: Tell the bot to part the current channel.
-|___ invite [chan]: Invite the bot to a channel. (This does not make the bot listen to any commands but the $ ones)
-|___ say [chan] [msg]: Tell the bot to say something to a channel.
-|___ pipe [start] [target]: Tell the bot to direct messages from [start] to [target]. E.g: $ pipe #wewlad Lurker123 will direct all messages from #wewlad to Lurker123's PM.
-|___ unpipe [start] [target]: Tell the bot to unpipe the specified pipe.
-
-!todo [method] [params] : Simple Todolist
-|____ get: Fetch all of your todos.
-|____ add [message]: Add a todo to your list
-|____ mod [id] [msg]: Update a todo with new msg.
-|____ del [id]: Delete a todo
-
 !cum [tags] | [filter] | [scoresAbove]:
 	This command queries Gelbooru to find images that has the [tags] specified, [filter]s out any images with such word in their tags, and scores above [scoreAbove].
 	For example,
@@ -49,11 +32,13 @@ $ [command] [params] : Internal Commands / Bot Utilities / Etc. Most commands re
 
 !define [wordPhrase]: Find a definition from Urban Dictionary (Mashape API).
 
+!uinfo [username/nick]: Fetch discord user's info
+
+!avatar [username/nick]: Fetch avatar URL
+
 !wiki [query]: Returns the first sentence of a Wikipedia article. (Uses Wikipedia API).
 
 !d [query]: Returns the definitions and pronunciation from Merriam-Webster (Uses Merriam-Webster API).
-
-!sick : Returns a joke from Sickipedia. (Fetches from Sickipedia XML).
 
 !shiba : Returns a picture URL from @shibesbot on Twitter.
 
@@ -72,5 +57,5 @@ $ [command] [params] : Internal Commands / Bot Utilities / Etc. Most commands re
 !genkey [-t characters] [-l length]: Generate a random string. Default to 32-character alpha-numeric and symbols.
 
 Other miscellaneous commands:
-!hansen, !throw, actionback.js (imitate ACTION)
+!hansen
 ```

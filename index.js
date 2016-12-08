@@ -1,7 +1,6 @@
 process.stdin.setEncoding('utf8');
 
 const Discord   = require('discord.js');
-const token 	= 'MjE3MDgwMTM4ODU5NDEzNTA0.CrOZxw.05GAzYdej6eukExXRGQJGaT3Ths';
 const fs  		= require('fs');
 
 var bot = new Discord.Client();
@@ -60,7 +59,7 @@ bot.on('error', (error) => {
 	console.log(error);
 });
 
-bot.login(token);
+bot.login(configuration.token);
 
 
 console.log("Hello. This bot is running on Node Version: " + process.version);

@@ -5,7 +5,7 @@ module.exports = function(input, out, extra) {
 	var spec = input.regex[2]? input.regex[2] : "";
 
 	if (what == "source") {
-		out("Git Clone this Repo: " + " [please ask bot owner]");
+		out("Git Clone this Repo: " + " https://bitbucket.org/contxtl/schbot");
 	}
 	else if ( what == "help" ) {
 		out("Available commands: $, ?, shota, fur, define, ud, wiki, source, help, cum, omdb, roll, choose, shiba, genkey, imdb. PM !help for more.");
